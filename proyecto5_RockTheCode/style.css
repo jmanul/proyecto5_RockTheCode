@@ -1,96 +1,103 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+
+}
+
+
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --white: rgb(243, 243, 243);
+  --black: #181818;
+  --yellow: #FFC300;
+  --green: #DAF7A6;
+  --red: #C70039;
+  --red2: #900C3F;
+  --red3: #581845;
+  --orange: #FF5733;
+  --dark-grey: rgb(104, 103, 103);
+  --light-grey: rgb(248, 248, 248);
+  
+  --text: "Encode Sans SC",
+    sans-serif;
+  --title: "M PLUS 1 Code",
+    monospace;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+i {
+
+  font-size: 1.8rem;
+
 }
-a:hover {
-  color: #535bf2;
+
+
+
+.flex-container {
+
+  display: flex;
+  justify-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
 }
+
 
 body {
-  margin: 0;
+
+  width: 100%;
+  min-height: 100dvh;
+}
+
+header {
+  position: fixed;
+  z-index: 5;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--black);
+  width: 100%;
+  min-height: 120px;
+  height: max-content;
+  padding: 20px 20px;
+  font-size: 22px;
+  font-family: var(--title);
+  font-weight: bold;
+  border-bottom-left-radius: 25px ;
+  border-bottom-right-radius: 25px ;
+
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+main {
+  position: relative;
+  width: 100%;
+    min-height: 100dvh;
+    background-image: url(./src/assets/backgraund.svg);
+    background-repeat: repeat;
+    background-size: 50px;
+    background-position: center center;
+  flex-direction: column;
+
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+.inicio {
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
+  width: 90%;
+  min-height: 120px;
+  height: max-content;
+  padding: 20px 20px;
+  font-size: 22px;
+  font-family: var(--title);
+  font-weight: bold;
+  
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
