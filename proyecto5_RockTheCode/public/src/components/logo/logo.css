@@ -1,16 +1,17 @@
 
 .logo-container {
-
+     
      background: var(--red2);
      border-radius: 50%;
      width: 100px;
      height: 100px;
      padding: 5px;
+     cursor: pointer;
 
 }
 
 .logo-container div {
-
+     position: relative;
      background: var(--green);
      height: 100%;
      width: 100%;
@@ -19,11 +20,29 @@
 }
 
 .logo-container img {
-
+     position: absolute;
      height: 100%;
 
 }
 
+@keyframes movi {
+
+     0% {
+
+          z-index: -1;
+     }
+
+     100% {
+
+          z-index: 1;
+     }
+
+}
+.foto {
+    
+     animation: movi .8s linear infinite;
+
+}
 
 @media (max-width: 450px) {
 
