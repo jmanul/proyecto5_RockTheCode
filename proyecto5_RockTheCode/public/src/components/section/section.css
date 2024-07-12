@@ -1,4 +1,16 @@
+h2 {
+     margin-top: 150px;
+     width: 90%;
+     padding: var(--xl) var(--xl);
+     font-size: 30px;
+     font-weight: bold;
+     font-family: var(--title);
+     color: var(--white);
+     border-top-left-radius: var(--l);
+     border-top-right-radius: var(--l);
+     background: var(--black);
 
+}
 
 section {
      position: relative;
@@ -6,90 +18,117 @@ section {
      max-width: 1000px;
      height: 75svh;
      background-color: var(--black);
-     border-bottom-left-radius:var(--xl); border-bottom-right-radius:var(--xl);
-     flex-direction: column;
-}
 
-h2 {
-     margin-top: 150px;
-     width: 90%;
-     padding: var(--xl) var(--xl);
-     font-size: 30px;
-     font-weight:bold;
-     font-family: var(--title);
-     color: var(--white);
-     border-top-left-radius: var(--l);
-     border-top-right-radius: var(--l);
-     background:var(--black);
-     
 }
 
 .marcadores {
-
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     justify-items: center;
+     align-content:center;
+     margin: var(--l);
      width: 95%;
-   
-    
+
+
 }
 
 .jugadores {
-     display:flex;
-     justify-content: left;
-     align-content:center;
+     display: flex;
+     justify-content: center;
+     align-content: center;
      align-items: center;
      justify-items: center;
      text-align: center;
-     width: 70%;
      gap: var(--m);
+     border-radius: var(--l);
+          border: var(--xs) solid var(--light-grey);
+          padding: var(--s) var(--s);
+   
 }
 
 .jugadores p {
      font-size: 30px;
-     color:var(--light-grey);
+     color: var(--light-grey);
      border-radius: var(--l);
-          border: var(--xs) solid var(--light-grey);
-          padding: var(--xs) var(--x);
+     border: var(--xs) solid var(--light-grey);
+     padding: var(--xs) var(--l);
 }
 
 .marcadores img {
-     margin-left:var(--xl);
+     
      width: 35px;
 
 }
 
+.crono {
 
+     display: flex;
+     justify-content: center;
+     align-content: center;
+     align-items: center;
+     justify-items: center;
+     text-align: center;
+     gap: var(--m);
+     border-radius: var(--l);
+     border: var(--xs) solid var(--light-grey);
+     padding: var(--s) var(--s);
+}
 
-.crono time {
+.crono span {
     
      font-size: 30px;
           color: var(--light-grey);
-          border-radius: var(--l);
-               border: var(--xs) solid var(--light-grey);
-               padding: var(--xs) var(--x);
 
-          }
-     
+}
 
+.crono time {
 
+     font-size: 30px;
+     color: var(--light-grey);
+     border-radius: var(--l);
+     border: var(--xs) solid var(--light-grey);
+     padding: var(--xs) var(--l);
+}
 
 .container-game {
-  
-     width:95%;
+
+     width: 95%;
      height: 70%;
      background: var(--light-grey);
      border-radius: var(--xl);
-     
+
 }
 
-.replay div{
-     border-radius:50px;
-     border:1px solid var(--light-grey);
-   
+.replay div {
+     border-radius: 50px;
+     border: 1px solid var(--light-grey);
+     margin: var(--l);
      width: 50px;
      height: 50px;
 }
 
-.replay  img {
+.replay img {
      padding: var(--m);
      width: 100%;
      height: 100%;
+}
+
+.clear {
+
+     height: 70px;
+     width: 90%;
+     background: var(--black);
+     margin-bottom: 10px;
+     border-bottom-left-radius: var(--xl);
+     border-bottom-right-radius: var(--xl);
+     flex-direction: column;
+}
+
+.clear>img {
+     border: var(--xs) solid var(--light-grey);
+     border-radius: 50%;
+     width: 50px;
+     height: 50px;
+
 }
