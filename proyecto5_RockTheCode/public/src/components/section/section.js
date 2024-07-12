@@ -1,4 +1,4 @@
-import { init } from '../../../../main';
+import { init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
 import { createList } from '../list/list';
 import { createLogo } from '../logo/logo';
@@ -12,6 +12,11 @@ export const createSection = (name) => {
      createLogo(header, './src/assets/icon.svg', 'logo-header');
      const logoInicio = document.querySelector('#logo-header');
      createList(header, menu, 'menu-header'); 
+     const list = document.querySelectorAll('#menu-header-list li')
+
+     menuInit(list);
+
+
      const main = document.querySelector('main');
      main.innerHTML = '';
 

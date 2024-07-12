@@ -1,8 +1,8 @@
 
 import { createList } from './public/src/components/list/list';
 import { createLogo } from './public/src/components/logo/logo'; 
-import { createSection } from './public/src/components/section/section.js';
 import { menu } from './public/src/data/data.js';
+import { createTres } from './public/src/pages/tres/tres.js';
 
 import './style.css'
 
@@ -19,9 +19,18 @@ export const menuInit = (list) => {
     
      for (const button of list) {
 
-          console.log(button.className);
+          const nameButton = button.className; 
+          
+          for (const game of menu) {
 
+               if (game.name === nameButton) {
 
+                    button.addEventListener('click', game.play);
+               }
+               
+          }
+          
+        
 
      }
 }
@@ -48,7 +57,7 @@ init();
 const logoInicio = document.querySelector('#logo-header');
 logoInicio.onclick = init;
 
-createSection('tres en raya');
+
 
 
 

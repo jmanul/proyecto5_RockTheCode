@@ -1,11 +1,10 @@
 import { createSection } from '../../components/section/section'
 import './ahorcado.css'
 
-export const createTres = () => {
+export const createAhorcado = () => {
 
-     createSection('Tres en Raya');
+     createSection('Ahorcado');
      const containerGame = document.querySelector('.container-game');
-     console.log(containerGame);
+     containerGame.innerText = 'ahorcado';
 }
 
-// createTres();
