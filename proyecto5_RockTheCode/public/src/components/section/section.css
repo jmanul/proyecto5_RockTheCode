@@ -1,6 +1,7 @@
 h2 {
      margin-top: 150px;
      width: 90%;
+     max-width: 1000px;
      padding: var(--xl) var(--xl);
      font-size: 30px;
      font-weight: bold;
@@ -133,6 +134,7 @@ section {
 
      height: 70px;
      width: 90%;
+     max-width: 1000px;
      background: var(--dark-grey);
      margin-bottom: 10px;
      border-bottom-left-radius: var(--xl);

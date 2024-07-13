@@ -22,6 +22,7 @@ const printNumber = () => {
 
 const tiempo = () => {
 
+
      const play = document.querySelector('#play');
 
      if (play.className == 'play-start') {
@@ -30,7 +31,9 @@ const tiempo = () => {
      }
 
      play.classList.add('play-start');
-
+      
+     s = '0' + 0;
+     m = '0' + 0;
 
      contador = setInterval(() => {
            
@@ -44,14 +47,16 @@ const tiempo = () => {
           if (s == 60) {
                
                s = '0' + 0;
-               m < 10 ? m = '0' + m : m = m
-               if (m == 3) {
-                    
-                    return;
 
-               } else {
-                  
+               if (m <= '0'+3) {
+                    
                     m++ 
+                    m = '0'+ m;
+
+               } else if(m == '0'+3) {
+                  
+                    ClearTime();
+                    alert('Se agoto su tuempo'); 
 
                }
     
