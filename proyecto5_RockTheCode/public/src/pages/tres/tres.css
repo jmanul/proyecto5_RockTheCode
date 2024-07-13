@@ -1,0 +1,24 @@
+.tablero {
+     
+     height:max-content;
+     width: max-content;
+     border-radius: var(--xl);
+     background: var(--dark-grey);
+     display:grid;
+     grid-template-columns: 1fr 1fr 1fr ;
+     
+}
+
+.casilla {
+     cursor: pointer;
+     width: 7rem;
+     height: 7rem;
+     border: var(--s) solid var(--light-grey);
+     
+}
+
+.ocupada img{
+
+     width: 70%;
+     height: 70%;
+}
