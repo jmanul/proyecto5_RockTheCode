@@ -1,6 +1,6 @@
 import { init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
-import { createList } from '../list/list';
+import { activeOption, createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 
 import './section.css';
@@ -20,7 +20,7 @@ const printNumber = () => {
 };
 
 
-const tiempo = () => {
+const tiempo = (time) => {
 
 
      const play = document.querySelector('#play');
@@ -48,19 +48,26 @@ const tiempo = () => {
                
                s = '0' + 0;
 
-               if (m <= '0'+3) {
+               if (m <= '0'+time) {
                     
                     m++ 
                     m = '0'+ m;
 
-               } else if(m == '0'+3) {
-                  
-                    ClearTime();
-                    alert('Se agoto su tuempo'); 
-
-               }
-    
+               } 
           } 
+
+          if (m == '0' + time) {
+               
+               setTimeout(() => {
+
+                    ClearTime();
+                   
+               }, 1000);
+               
+               alert('Se agoto su tuempo');
+              
+          }
+
 
           printNumber();
 
@@ -93,16 +100,17 @@ const clearGame = () => {
 
 
 
-export const createSection = (name) => {
+export const createSection = (button, name, time) => {
 
      const header = document.querySelector('header');
      header.innerHTML = '';
      createLogo(header, './src/assets/icon.svg', 'logo-header');
      const logoInicio = document.querySelector('#logo-header');
      createList(header, menu, 'menu-header'); 
-     const list = document.querySelectorAll('#menu-header-list li')
-
+     const list = document.querySelectorAll('#menu-header-list li');
+     
      menuInit(list);
+     activeOption(button, list);
 
      const main = document.querySelector('main');
      main.innerHTML = '';
@@ -122,7 +130,7 @@ export const createSection = (name) => {
 </div>
 <div class="crono"><span><img src="./src/assets/time.svg" alt="time"></span>
   <p id="time-min" class="time-min">00</p>
-  <span>:</span>
+  <strong>:</strong>
   <p id="time-seg" class="time-seg">00</p>
 </div>`;
      section.append(divMarcador);
@@ -144,7 +152,7 @@ export const createSection = (name) => {
 
      logoInicio.onclick = init;
      
-     const play = document.querySelector('#play').addEventListener('click', tiempo);
+     const play = document.querySelector('#play').addEventListener('click', () => tiempo(time));
      const reload = document.querySelector('#reload').addEventListener('click', ClearTime);
      clear.querySelector('#clear').addEventListener('click', clearGame);
      

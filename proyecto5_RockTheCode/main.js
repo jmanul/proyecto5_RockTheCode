@@ -1,6 +1,6 @@
 
 import { createList } from './public/src/components/list/list';
-import { createLogo } from './public/src/components/logo/logo'; 
+import { createLogo } from './public/src/components/logo/logo';
 import { menu } from './public/src/data/data.js';
 import { createTres } from './public/src/pages/tres/tres.js';
 
@@ -16,39 +16,38 @@ body.insertBefore(header, main);
 
 export const menuInit = (list) => {
 
-    
      for (const button of list) {
 
-          const nameButton = button.className; 
-          
+          const nameButton = button.innerText;
+          const classButton = button.className;
+
           for (const game of menu) {
 
                if (game.name === nameButton) {
 
-                    button.addEventListener('click', game.play);
+
+                    button.addEventListener('click', () => game.play(classButton));
                }
-               
+
           }
-          
-        
 
      }
 }
 
 
 export const init = () => {
-     
+
      main.innerHTML = '';
      header.innerHTML = '';
      const menuContainer = document.createElement('div');
      menuContainer.className = ('inicio')
      main.append(menuContainer);
      createLogo(header, './src/assets/icon.svg', 'logo-header');
-     createList(menuContainer, menu, 'menu-header');  
-     const list = document.querySelectorAll('#menu-header-list li')
-     
+     createList(menuContainer, menu, 'menu-header');
+     const list = document.querySelectorAll('#menu-header-list li');
+    
      menuInit(list);
- 
+
 }
 
 

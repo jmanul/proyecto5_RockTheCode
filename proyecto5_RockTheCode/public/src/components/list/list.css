@@ -27,3 +27,10 @@ border: 1px solid var(--green);
      transition: .5s;
    
 }
+
+.seleccionado p {
+     
+     border-radius: 25px;
+     border: 1px solid var(--light-grey);
+     color:var(--red);
+}

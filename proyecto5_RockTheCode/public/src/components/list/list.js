@@ -4,6 +4,22 @@ import './list.css';
 
 import './list.css';
 
+export const activeOption = (button, list) => {
+
+     for (const item of list) {
+
+          if (item.className.includes('seleccionado')) {
+
+               item.classList.remove('seleccionado');
+
+          }
+     };
+
+     const checket = document.querySelector(`.${button}`);
+     checket.classList.add('seleccionado')
+    
+};
+
 export const createList = (site, list, name) => {
 
 
@@ -36,14 +52,14 @@ export const createList = (site, list, name) => {
                     const img = document.createElement('img');
                     img.src = item.icon;
                     const div = document.createElement('div');
-                    div.className = item.name;
+                    div.className = item.id;
                     div.appendChild(img);
                     li.appendChild(div);
 
                } else {
 
                     const li = document.createElement('li');
-                    li.className = item.name;
+                    li.className = item.id;
                     const p = document.createElement('p');
                     p.innerText = item.name;
                     li.append(p);
@@ -59,14 +75,14 @@ export const createList = (site, list, name) => {
                     const img = document.createElement('img');
                     img.src = item.icon;
                     const div = document.createElement('div');
-                    div.className = item.name;
+                    div.className = item.id;
                     div.appendChild(img);
                     li.appendChild(div);
 
                } else {
 
                     const li = document.createElement('li');
-                    li.className = item.name;
+                    li.className = item.id;
                     const p = document.createElement('p');
                     p.innerText = item.name;
                     li.append(p);
