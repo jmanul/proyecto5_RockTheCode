@@ -8,7 +8,7 @@ h2 {
      color: var(--white);
      border-top-left-radius: var(--l);
      border-top-right-radius: var(--l);
-     background: var(--black);
+     background: var(--dark-grey);
 
 }
 
@@ -17,7 +17,7 @@ section {
      width: 90%;
      max-width: 1000px;
      height: 75svh;
-     background-color: var(--black);
+     background-color: var(--dark-grey);
 
 }
 
@@ -82,7 +82,7 @@ section {
 
 }
 
-.crono time {
+.crono p {
 
      font-size: 30px;
      color: var(--light-grey);
@@ -100,7 +100,7 @@ section {
 
 }
 
-.replay div {
+.replay div{
      border-radius: 50px;
      border: 1px solid var(--light-grey);
      margin: var(--l);
@@ -108,17 +108,32 @@ section {
      height: 50px;
 }
 
-.replay img {
+.replay button {
+     border-radius: 50%;
+     background:transparent;
+     cursor: pointer;
      padding: var(--m);
      width: 100%;
      height: 100%;
+}
+
+.replay img {
+     cursor: pointer;
+     padding: var(--m);
+     width: 100%;
+     height: 100%;
+}
+
+.play-start {
+
+     opacity: .2;
 }
 
 .clear {
 
      height: 70px;
      width: 90%;
-     background: var(--black);
+     background: var(--dark-grey);
      margin-bottom: 10px;
      border-bottom-left-radius: var(--xl);
      border-bottom-right-radius: var(--xl);
@@ -126,6 +141,7 @@ section {
 }
 
 .clear>img {
+     cursor: pointer;
      border: var(--xs) solid var(--light-grey);
      border-radius: 50%;
      width: 50px;

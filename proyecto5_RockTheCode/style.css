@@ -20,8 +20,9 @@
   --red2: #900C3F;
   --red3: #581845;
   --orange: #FF5733;
-  --dark-grey: rgb(104, 103, 103);
-  --light-grey: rgb(248, 248, 248);
+  --dark-grey: rgb(35, 34, 34);
+  --grey: rgba(83, 77, 77, 0.973);
+  --light-grey: rgba(248, 248, 248, 0.97);
   --xs : 1px;
   --s : 2px;
   --m :5px;
