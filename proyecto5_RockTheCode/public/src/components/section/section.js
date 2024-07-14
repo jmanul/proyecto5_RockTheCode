@@ -57,17 +57,15 @@ const tiempo = (time) => {
           } 
 
           if (m == '0' + time) {
-               
+
                setTimeout(() => {
 
                     ClearTime();
+                    alert('Se agoto su tiempo');
                    
-               }, 1000);
-               
-               alert('Se agoto su tuempo');
-              
+               }, 500);
+ 
           }
-
 
           printNumber();
 
@@ -76,7 +74,7 @@ const tiempo = (time) => {
 }
 
 
-const ClearTime = () => {
+export const ClearTime = () => {
 
      const play = document.querySelector('#play');
      play.classList.remove('play-start');
@@ -151,10 +149,30 @@ export const createSection = (button, name, time) => {
      main.append(clear);
 
      logoInicio.onclick = init;
+
+    const clearActionGame = () => { 
+
+          menu.forEach((option) => {
+               if (option.name == name) {
+                    option.play(button)
+               }
+          });
+     };
      
-     const play = document.querySelector('#play').addEventListener('click', () => tiempo(time));
-     const reload = document.querySelector('#reload').addEventListener('click', ClearTime);
-     clear.querySelector('#clear').addEventListener('click', clearGame);
+     const play = document.querySelector('#play').addEventListener('click', () => {
+          clearActionGame();
+          tiempo(time);
+     });
+     const reload = document.querySelector('#reload').addEventListener('click', () => {
+          
+          clearActionGame();
+          ClearTime();  
+     });
+     clear.querySelector('#clear').addEventListener('click', () => {
+         
+          clearActionGame();
+          clearGame();
+     });
      
 }
 
