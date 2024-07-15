@@ -1,39 +1,72 @@
+
+import { createMessage } from '../../components/message/message';
 import { ClearTime, createSection } from '../../components/section/section';
+
 import './tres.css'
 
-
-const red = './src/assets/red.svg'; 
-const yellow = './src/assets/yellow.svg';
-let turn = './src/assets/red.svg'; 
+const colorRed = './src/assets/red.svg' ;
+const colorYellow = './src/assets/yellow.svg'; 
+export const nameRed = 'red';
+export const nameYellow = 'yellow';
+export let turnPoint = nameRed;   
+let turnColor = colorRed;
 let countEndGame = 0;
 
-export const initPlay = (button, numero) => {
+const gameryellow = document.querySelector('#jugador-1');
+const gamerRed = document.querySelector('#jugador-2');
 
+
+
+export const turnColorMarker = () => {
+
+     const iconYellow = document.querySelector('#iconJugador-1');
+     const iconRed = document.querySelector('#iconJugador-2');
+
+     if (turnColor == colorRed) {
+
+          turnPoint = nameRed;
+     
+          iconRed.classList.remove('icon-action');
+          iconYellow.classList.add('icon-action');
+        
+
+     } else if (turnColor == colorYellow) {
+
+          turnPoint = nameYellow;
+
+          iconYellow.classList.remove('icon-action');
+          iconRed.classList.add('icon-action');
+
+     }
+     
+}
+
+
+export const initPlay = (button, numero) => {
      
      const play = document.querySelector('#play');
      
      if (play.className !== 'play-start') {
-
-          createTres(button);
-          alert('pulsa play para empezar');
-         
+          // createTres(button);
+          const section = document.querySelector('section')
+          createMessage(section, 'pulsa play para empezar')
+          
           return;
 
      } else if (play.className === 'play-start') {
           
-          controlTurn(numero);
+          controlturnColor(numero);
      }
  };
 
-const controlTurn = (numero) => {
-
-
-     countEndGame++;
-     
-     turn == red ? turn = yellow : turn = red;
+const controlturnColor = (numero) => {
 
      const numberCasilla = document.querySelector(`#casilla-${numero}`);
-     
+     const containerGame = document.querySelector('.container-game');
+     const iconYellow = document.querySelector('#iconJugador-1');
+     const iconRed = document.querySelector('#iconJugador-2');
+     turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
+
      if (numberCasilla.className.includes('ocupada')) {
           
           return; 
@@ -42,21 +75,25 @@ const controlTurn = (numero) => {
           
           numberCasilla.classList.add('ocupada');
           const ficha = document.createElement('img');
-          ficha.src = turn;
+          ficha.src = turnColor;
           numberCasilla.append(ficha);
 
+          countEndGame++;
+          turnColorMarker();
+
      } 
-     console.log(countEndGame);
 
      if (countEndGame == 9) {
+
+          iconRed.classList.remove('icon-action');
+          iconYellow.classList.remove('icon-action');
 
           countEndGame = 0;
           
           setTimeout(() => {
               
-               alert('termino la partida');
+               createMessage(containerGame,'termino la partida')
                ClearTime();
-             
               
           }, 1000);
          
@@ -83,4 +120,6 @@ export const createTres = (button) => {
           casilla.addEventListener('click', () => initPlay(button, i));
           
      }
+
+     turnColorMarker();
 }

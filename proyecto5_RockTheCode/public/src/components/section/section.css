@@ -27,7 +27,7 @@ section {
      justify-content: space-between;
      align-items: center;
      justify-items: center;
-     align-content:center;
+     align-content: center;
      margin: var(--l);
      width: 95%;
 
@@ -43,9 +43,9 @@ section {
      text-align: center;
      gap: var(--m);
      border-radius: var(--l);
-          border: var(--xs) solid var(--light-grey);
-          padding: var(--s) var(--s);
-   
+     border: var(--xs) solid var(--light-grey);
+     padding: var(--s) var(--s);
+
 }
 
 .jugadores p {
@@ -57,8 +57,28 @@ section {
 }
 
 .marcadores img {
-     
+
      width: 35px;
+
+}
+
+@keyframes turn {
+
+     0% {
+
+          opacity: 0;
+     }
+
+     100% {
+
+          opacity: 1;
+     }
+
+}
+
+.icon-action {
+
+     animation: turn .8s linear infinite;
 
 }
 
@@ -77,9 +97,9 @@ section {
 }
 
 .crono strong {
-    
-          font-size: 30px;
-          color: var(--light-grey);
+
+     font-size: 30px;
+     color: var(--light-grey);
 
 }
 
@@ -101,7 +121,7 @@ section {
 
 }
 
-.replay div{
+.replay div {
      border-radius: 50px;
      border: 1px solid var(--light-grey);
      margin: var(--l);
@@ -111,7 +131,7 @@ section {
 
 .replay button {
      border-radius: 50%;
-     background:transparent;
+     background: transparent;
      cursor: pointer;
      padding: var(--m);
      width: 100%;

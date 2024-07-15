@@ -2,6 +2,7 @@ import { init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
 import { activeOption, createList } from '../list/list';
 import { createLogo } from '../logo/logo';
+import { createMessage } from '../message/message';
 
 import './section.css';
 
@@ -61,7 +62,8 @@ const tiempo = (time) => {
                setTimeout(() => {
 
                     ClearTime();
-                    alert('Se agoto su tiempo');
+                    const section = document.querySelector('section');
+                    createMessage(section, 'se agoto su tiempo');
                    
                }, 500);
  
@@ -123,8 +125,8 @@ export const createSection = (button, name, time) => {
    
      const divMarcador = document.createElement('div');
      divMarcador.classList.add('marcadores');
-     divMarcador.innerHTML = `<div class = "jugadores "><span><img src="./src/assets/gamer1.svg" alt="jugador 1"></span> <p class="jugador-1" id="jugador-1" value="0">0</p>
-<span><img src="./src/assets/gamer2.svg" alt="jugador 2"></span> <p class="jugador-2" id="jugador-2" value="0">0</p>
+     divMarcador.innerHTML = `<div class = "jugadores "><span><img src="./src/assets/gamer1.svg" alt="jugador 1" id = "iconJugador-1" ></span> <p class="jugador-1" id="jugador-1" value="0">0</p>
+<span><img src="./src/assets/gamer2.svg" alt="jugador 2" id = "iconJugador-2"></span> <p class="jugador-2" id="jugador-2" value="0">0</p>
 </div>
 <div class="crono"><span><img src="./src/assets/time.svg" alt="time"></span>
   <p id="time-min" class="time-min">00</p>
@@ -160,6 +162,7 @@ export const createSection = (button, name, time) => {
      };
      
      const play = document.querySelector('#play').addEventListener('click', () => {
+         
           clearActionGame();
           tiempo(time);
      });

@@ -1,10 +1,11 @@
 
 import { createList } from './public/src/components/list/list';
 import { createLogo } from './public/src/components/logo/logo';
-import { menu } from './public/src/data/data.js';
-import { createTres } from './public/src/pages/tres/tres.js';
+import { createMessage } from './public/src/components/message/message.js';
+import { menu} from './public/src/data/data.js';
 
 import './style.css'
+
 
 const body = document.querySelector('body');
 const main = document.createElement('main');

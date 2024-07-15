@@ -1,0 +1,34 @@
+.container-message {
+     position: absolute;
+     background: rgba(237, 235, 235, 0.537);
+     width: 100%;
+     height:100%;
+}
+.container-message> div {
+
+     position: absolute;
+     z-index: 5;
+     color:var(--light-grey);
+     width: 50%;
+     background:var(--dark-grey);height: 200px;
+     border-radius: var(--xl);
+     border:var(--m) solid var(--red3);
+
+}
+
+.container-message  p{
+
+     font-size: 20px;
+     font-weight:bold;
+     font-family: var(--text);
+}
+
+.container-message img {
+    
+     cursor: pointer;
+    height: 25px;
+    position: absolute;
+    top: 10px;
+    right:10px;
+
+}
