@@ -1,6 +1,5 @@
 import { init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
-import { countRedTres, countYellowTres } from '../../pages/tres/tres';
 import { activeOption, createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 import { createMessage } from '../message/message';
@@ -158,15 +157,12 @@ export const createSection = (button, name, time) => {
      });
  
      clear.querySelector('#clear').addEventListener('click', () => {
-          const firstGamer = document.querySelector('#jugador-1');
-          const secondGamer = document.querySelector('#jugador-2');
-        
-          localStorage.removeItem('pointRedTres', countRedTres);
-          localStorage.removeItem('pointYellowTres', countYellowTres);
+          localStorage.setItem('pointRedTres','0'+0);
+          localStorage.setItem('pointYellowTres','0'+0);
+     
           clearActionGame();
           ClearTime();
-          firstGamer.innerHTML = '00';
-          secondGamer.innerHTML = '00';
+        
      });
 
 }
