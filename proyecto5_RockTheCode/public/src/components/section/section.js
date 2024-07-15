@@ -1,5 +1,6 @@
 import { init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
+import { countRedTres, countYellowTres } from '../../pages/tres/tres';
 import { activeOption, createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 import { createMessage } from '../message/message';
@@ -20,9 +21,7 @@ const printNumber = () => {
 
 };
 
-
 const tiempo = (time) => {
-
 
      const play = document.querySelector('#play');
 
@@ -75,7 +74,6 @@ const tiempo = (time) => {
 
 }
 
-
 export const ClearTime = () => {
 
      const play = document.querySelector('#play');
@@ -85,20 +83,7 @@ export const ClearTime = () => {
      m ='0'+0;
      printNumber();
 }
-
-const clearGame = () => {
-      
-     ClearTime();
-
-     const firstGamer = document.querySelector('#jugador-1');
-     const secondGamer = document.querySelector('#jugador-2');
-
-     firstGamer.innerHTML = '0';
-     secondGamer.innerHTML = '0';
-
- }
-
-
+ 
 
 export const createSection = (button, name, time) => {
 
@@ -125,8 +110,8 @@ export const createSection = (button, name, time) => {
    
      const divMarcador = document.createElement('div');
      divMarcador.classList.add('marcadores');
-     divMarcador.innerHTML = `<div class = "jugadores "><span><img src="./src/assets/gamer1.svg" alt="jugador 1" id = "iconJugador-1" ></span> <p class="jugador-1" id="jugador-1" value="0">0</p>
-<span><img src="./src/assets/gamer2.svg" alt="jugador 2" id = "iconJugador-2"></span> <p class="jugador-2" id="jugador-2" value="0">0</p>
+     divMarcador.innerHTML = `<div class = "jugadores "><span><img src="./src/assets/gamer1.svg" alt="jugador 1" id = "iconJugador-1" ></span> <p class="jugador-1" id="jugador-1">00</p>
+<span><img src="./src/assets/gamer2.svg" alt="jugador 2" id = "iconJugador-2"></span> <p class="jugador-2" id="jugador-2">00</p>
 </div>
 <div class="crono"><span><img src="./src/assets/time.svg" alt="time"></span>
   <p id="time-min" class="time-min">00</p>
@@ -171,11 +156,18 @@ export const createSection = (button, name, time) => {
           clearActionGame();
           ClearTime();  
      });
+ 
      clear.querySelector('#clear').addEventListener('click', () => {
-         
+          const firstGamer = document.querySelector('#jugador-1');
+          const secondGamer = document.querySelector('#jugador-2');
+        
+          localStorage.removeItem('pointRedTres', countRedTres);
+          localStorage.removeItem('pointYellowTres', countYellowTres);
           clearActionGame();
-          clearGame();
+          ClearTime();
+          firstGamer.innerHTML = '00';
+          secondGamer.innerHTML = '00';
      });
-     
+
 }
 
