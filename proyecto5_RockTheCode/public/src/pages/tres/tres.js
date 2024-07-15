@@ -20,7 +20,40 @@ export const setLocalstorage = (red, yellow) => {
 
      localStorage.setItem('pointRedTres', red);
      localStorage.setItem('pointYellowTres', yellow);
+
      
+}
+
+const printThree = (pos,color) => {
+
+     const tablero = document.querySelector('.tablero');
+     tablero.innerHTML = '';
+
+     for (let i = 0; i < 9; i++) {
+
+          const casilla = document.createElement('div');
+          casilla.id = `casilla-${i}`;
+          casilla.classList.add('flex-container', 'casilla');
+          tablero.append(casilla);
+          casilla.style.borderRadius = `var(--xl)`;
+          casilla.style.background = `var(--grey)`;
+          combinations[pos].forEach((item) => {
+           
+               if (item == i) {
+                    console.log(' coincide');
+                    const ficha = document.createElement('img');
+                    color == nameRed ? ficha.src = colorRed : ficha.src = colorYellow;
+                    casilla.append(ficha);
+                    casilla.style.background = `var(--dark-grey)`;
+                    ficha.style.width = '70%';
+                    ficha.style.height = '70%';
+
+
+               }
+
+          });
+
+     }  
 }
 
 const printLocalStorage = () => {
@@ -38,8 +71,6 @@ export const printPoint = () => {
      const gamerRed = document.querySelector('#jugador-2');
      const iconYellow = document.querySelector('#iconJugador-1');
      const iconRed = document.querySelector('#iconJugador-2');
-
-     console.log(`estoy en print point empezando${countRedTres}`);
     
      if (turnPoint == nameYellow) {
           iconRed.classList.remove('icon-action');
@@ -63,16 +94,15 @@ export const printPoint = () => {
           createMessage(containerGame, 'Gano el jugador rojo');
           ClearTime()
 
-          console.log(`estoy en print point final${countRedTres}`);
+         
         
      }
 };
 
-
-
 const comprobation = (numero) => { 
       
-     for (const combination of copyCombinations) {
+     for (let i = 0; i < copyCombinations.length; i++) { 
+          let combination = copyCombinations[i];
          
           let count = 0;
 
@@ -83,8 +113,7 @@ const comprobation = (numero) => {
                if (numberCasilla == numero) {
                      
                     combination.splice(y,1, turnPoint);
-                     
-                    
+                       
                     for (let x = 0; x < combination.length; x++) {
                            
                          let element = combination[x];
@@ -93,7 +122,8 @@ const comprobation = (numero) => {
                               count++;  
                          }
                          if (count == 3) {
-                             
+                              
+                              printThree(i,turnPoint);
                               printPoint();
                          }
                     } 
@@ -115,16 +145,13 @@ export const turnColorMarker = () => {
           iconRed.classList.remove('icon-action');
           iconYellow.classList.add('icon-action');
         
-
      } else if (turnColor == colorYellow) {
 
           iconYellow.classList.remove('icon-action');
           iconRed.classList.add('icon-action');
 
-     }
-     
+     }     
 }
-
 
 export const initPlay = (numero) => {
      
@@ -180,9 +207,7 @@ const controlturnColor = (numero) => {
                createMessage(containerGame,'termino la partida')
                ClearTime();
               
-          }, 1000);
-         
-          
+          }, 1000);   
      }
      
 }
@@ -190,7 +215,7 @@ const controlturnColor = (numero) => {
 export const createTres = (button) => {
     
      countEndGame = 0;
-     createSection(button, 'Tres en Raya', '1');
+     createSection(button, 'Tres en Raya', '1', 'pointRedTres', 'pointYellowTres');
      copyCombinations = JSON.parse(JSON.stringify(combinations));
     
      const containerGame = document.querySelector('.container-game');

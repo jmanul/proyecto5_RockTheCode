@@ -83,8 +83,7 @@ export const ClearTime = () => {
      printNumber();
 }
  
-
-export const createSection = (button, name, time) => {
+export const createSection = (button, name, time, red, yellow) => {
 
      const header = document.querySelector('header');
      header.innerHTML = '';
@@ -159,7 +158,7 @@ export const createSection = (button, name, time) => {
      clear.querySelector('#clear').addEventListener('click', () => {
           localStorage.setItem('pointRedTres','0'+0);
           localStorage.setItem('pointYellowTres','0'+0);
-     
+          
           clearActionGame();
           ClearTime();
         
