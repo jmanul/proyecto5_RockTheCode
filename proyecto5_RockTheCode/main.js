@@ -1,10 +1,11 @@
 
 import { createList } from './public/src/components/list/list';
 import { createLogo } from './public/src/components/logo/logo';
-import { createMessage } from './public/src/components/message/message.js';
 import { menu} from './public/src/data/data.js';
 
 import './style.css'
+
+
 
 
 const body = document.querySelector('body');
@@ -28,6 +29,7 @@ export const menuInit = (list) => {
 
 
                     button.addEventListener('click', () => game.play(classButton));
+                         
                }
 
           }

@@ -24,3 +24,17 @@
      width: 70%;
      height: 70%;
 }
+
+@keyframes start {
+
+     0% {
+
+          opacity: 0;
+     }
+
+     100% {
+
+          opacity: 1;
+     }
+
+}

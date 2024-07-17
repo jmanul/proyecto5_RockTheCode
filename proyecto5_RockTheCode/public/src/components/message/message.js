@@ -10,6 +10,8 @@ export const createMessage = (site, message) => {
 
      const clearMessage = document.querySelector('#clear-message').addEventListener('click', () => { 
 
+          const play = document.querySelector('#play');
+          play.style.animation = 'turn .8s linear .2s infinite';
           containerMessage.remove();
      });
 

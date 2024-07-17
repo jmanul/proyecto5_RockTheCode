@@ -66,12 +66,17 @@ section {
 
      0% {
 
-          opacity: 0;
+          opacity: 1;
      }
+
+     50% {
+
+          opacity: 1;
+     } 
 
      100% {
 
-          opacity: 1;
+          opacity: 0;
      }
 
 }
@@ -168,5 +173,12 @@ section {
      border-radius: 50%;
      width: 50px;
      height: 50px;
+
+}
+
+
+.active {
+
+     animation: movi .8s linear .2s infinite;
 
 }

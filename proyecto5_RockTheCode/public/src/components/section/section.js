@@ -1,5 +1,6 @@
 import { init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
+import { turnColorMarker } from '../../pages/tres/tres';
 import { activeOption, createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 import { createMessage } from '../message/message';
@@ -30,6 +31,9 @@ const tiempo = (time) => {
      }
 
      play.classList.add('play-start');
+     play.classList.remove('active');
+
+     turnColorMarker();
       
      s = '0' + 0;
      m = '0' + 0;
@@ -84,7 +88,7 @@ export const ClearTime = () => {
 }
  
 export const createSection = (button, name, time, red, yellow) => {
-
+     
      const header = document.querySelector('header');
      header.innerHTML = '';
      createLogo(header, './src/assets/icon.svg', 'logo-header');
@@ -94,6 +98,7 @@ export const createSection = (button, name, time, red, yellow) => {
      
      menuInit(list);
      activeOption(button, list);
+     
 
      const main = document.querySelector('main');
      main.innerHTML = '';
@@ -124,7 +129,7 @@ export const createSection = (button, name, time, red, yellow) => {
     
      const replay = document.createElement('div');
      replay.classList.add('flex-container', 'replay');
-     replay.innerHTML = `<div class="flex-container"><button id="play"><img src="./src/assets/play.svg" alt="play"></button></div>
+     replay.innerHTML = `<div class="flex-container"><button class = "active" id="play"><img src="./src/assets/play.svg" alt="play"></button></div>
 <div class="flex-container"><img src="./src/assets/reload.svg" alt="reload" id="reload"></div>`;
      section.append(replay);
 
@@ -148,6 +153,7 @@ export const createSection = (button, name, time, red, yellow) => {
          
           clearActionGame();
           tiempo(time);
+          
      });
      const reload = document.querySelector('#reload').addEventListener('click', () => {
           
@@ -155,10 +161,11 @@ export const createSection = (button, name, time, red, yellow) => {
           ClearTime();  
      });
  
-     clear.querySelector('#clear').addEventListener('click', () => {
-          localStorage.setItem('pointRedTres','0'+0);
-          localStorage.setItem('pointYellowTres','0'+0);
-          
+     clear.addEventListener('click', () => {
+
+          delEstorage(red);
+          delEstorage(yellow);
+         
           clearActionGame();
           ClearTime();
         
