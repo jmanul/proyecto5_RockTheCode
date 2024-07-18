@@ -1,6 +1,6 @@
 import { init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
-import { turnColorMarker } from '../../pages/tres/tres';
+import { deleteLocalStore, turnColorMarker } from '../../pages/tres/tres';
 import { activeOption, createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 import { createMessage } from '../message/message';
@@ -161,11 +161,9 @@ export const createSection = (button, name, time, red, yellow) => {
           ClearTime();  
      });
  
-     clear.addEventListener('click', () => {
-
-          delEstorage(red);
-          delEstorage(yellow);
+     clear.addEventListener('click', () => {   
          
+          deleteLocalStore('pointRedTres', 'pointYellowTres');
           clearActionGame();
           ClearTime();
         

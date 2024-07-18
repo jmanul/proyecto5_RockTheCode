@@ -6,22 +6,61 @@ import './tres.css'
 
 const colorRed = './src/assets/red.svg' ;
 const colorYellow = './src/assets/yellow.svg'; 
-export const nameRed = 'countRedTres';
-export const nameYellow = 'countYellowTres';
+export const nameRed = 'countRed';
+export const nameYellow = 'countYellow';
 export let turnPoint = nameRed;   
-let turnColor = colorRed;
-let countEndGame = 0;
-let countRedTres = '0' + 0;
-let countYellowTres = '0' + 0;
+export let turnColor = colorRed;
+export let countEndGame = 0;
+export let countRed;
+export let countYellow;
+export let localyellow;
+export let localred;
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
-let copyCombinations = []; 
+let copyCombinations = [];
+
+
+export const initDate = (red, yellow) => {
+     
+     localred = localStorage.getItem('pointRedTres'); 
+     localyellow=localStorage.getItem('pointYellowTres');
+
+     if (localred) {
+          countRed = localred;
+     } else {
+
+          countRed = '0' + 0;
+     }
+     if (localyellow) {
+
+         countYellow = localyellow;
+
+     } else {
+
+          countYellow = '0' + 0;
+     }
+
+}
 
 export const setLocalstorage = (red, yellow) => {
 
-     localStorage.setItem('pointRedTres', red);
-     localStorage.setItem('pointYellowTres', yellow);
+     localStorage.setItem(red, countRed);
+     localStorage.setItem(yellow, countYellow);
     
 }
+
+const printLocalStorage = () => {
+
+     document.querySelector('#jugador-1').innerHTML = countYellow;
+                            
+     document.querySelector('#jugador-2').innerHTML = countRed;
+}
+
+export const deleteLocalStore = (red,yellow) => {
+
+     localStorage.removeItem(red);
+     localStorage.removeItem(yellow);
+}
+
 
 const printThree = (posit,color) => {
 
@@ -39,7 +78,7 @@ const printThree = (posit,color) => {
           combinations[posit].forEach((item) => {
            
                if (item == i) {
-                    console.log(' coincide');
+                   
                     const ficha = document.createElement('img');
                     color == nameRed ? ficha.src = colorRed : ficha.src = colorYellow;
                     casilla.append(ficha);
@@ -55,14 +94,6 @@ const printThree = (posit,color) => {
      }  
 }
 
-const printLocalStorage = () => {
-     
-     const gamerYellow = document.querySelector('#jugador-1');
-    gamerYellow.innerHTML = localStorage.getItem('pointYellowTres');
-          
-     const gamerRed = document.querySelector('#jugador-2')
-     gamerRed.innerHTML=localStorage.getItem('pointRedTres');
-}
 
 export const printPoint = () => {
      const containerGame = document.querySelector('.container-game');
@@ -72,25 +103,27 @@ export const printPoint = () => {
     
      if (turnPoint == nameYellow) {
           iconRed.classList.remove('icon-action');
-          countYellowTres++;
-          if (countYellowTres < 10) { countYellowTres = '0' + countYellowTres };
-
-          gamerYellow.innerHTML = countYellowTres;
+          countYellow++;
+          if (countYellow < 10) { countYellow = '0' + countYellow };
+       
+          gamerYellow.innerHTML = countYellow;
           createMessage(containerGame, 'Gano el jugador amarillo');
           ClearTime()
      
      } else if (turnPoint == nameRed) {
           iconRed.classList.remove('icon-action');
-          countRedTres++;
-          if (countRedTres < 10) { countRedTres = '0' + countRedTres };
-        
-          gamerRed.innerHTML = countRedTres;
+          countRed++;
+          if (countRed < 10) { countRed = '0' + countRed };
+          
+          gamerRed.innerHTML = countRed;
           createMessage(containerGame, 'Gano el jugador rojo');
           ClearTime()
-
+          
      }
-
-     setLocalstorage(countRedTres, countYellowTres);
+    
+     setLocalstorage('pointRedTres', 'pointYellowTres');
+     initDate('pointRedTres', 'pointYellowTres');
+ 
 };
 
 const comprobation = (numero) => { 
@@ -205,6 +238,8 @@ const controlturnColor = (numero) => {
 }
 
 export const createTres = (button) => {
+
+     initDate('pointRedTres', 'pointYellowTres');
     
      countEndGame = 0;
      createSection(button, 'Tres en Raya', '1', 'pointRedTres', 'pointYellowTres');
@@ -214,7 +249,8 @@ export const createTres = (button) => {
      const tablero = document.createElement('div');
      tablero.className = 'tablero';
      containerGame.append(tablero);
-
+     printLocalStorage();
+   
      for (let i = 0; i < 9; i++) {
 
           const casilla = document.createElement('div');
@@ -224,8 +260,5 @@ export const createTres = (button) => {
           casilla.addEventListener('click', () => initPlay(i));
           
      }
-     
-     printLocalStorage();
-     turnColorMarker();
        
 }
