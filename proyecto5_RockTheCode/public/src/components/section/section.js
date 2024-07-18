@@ -1,7 +1,7 @@
-import { init, menuInit } from '../../../../main';
+import { activeOption, init, menuInit } from '../../../../main';
 import { menu } from '../../data/data';
 import { deleteLocalStore, turnColorMarker } from '../../pages/tres/tres';
-import { activeOption, createList } from '../list/list';
+import { createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 import { createMessage } from '../message/message';
 
@@ -87,7 +87,9 @@ export const ClearTime = () => {
      printNumber();
 }
  
-export const createSection = (button, name, time, red, yellow) => {
+export const createSection = (button, game) => {
+
+     const { name, time, player, claveRed, claveYellow } = game;
      
      const header = document.querySelector('header');
      header.innerHTML = '';
@@ -99,7 +101,6 @@ export const createSection = (button, name, time, red, yellow) => {
      menuInit(list);
      activeOption(button, list);
      
-
      const main = document.querySelector('main');
      main.innerHTML = '';
 
@@ -139,32 +140,23 @@ export const createSection = (button, name, time, red, yellow) => {
      main.append(clear);
 
      logoInicio.onclick = init;
-
-    const clearActionGame = () => { 
-
-          menu.forEach((option) => {
-               if (option.name == name) {
-                    option.play(button)
-               }
-          });
-     };
      
      const play = document.querySelector('#play').addEventListener('click', () => {
          
-          clearActionGame();
+          player(button, game);
           tiempo(time);
           
      });
      const reload = document.querySelector('#reload').addEventListener('click', () => {
           
-          clearActionGame();
+          player(button, game);
           ClearTime();  
      });
  
      clear.addEventListener('click', () => {   
          
-          deleteLocalStore('pointRedTres', 'pointYellowTres');
-          clearActionGame();
+          deleteLocalStore(claveRed, claveYellow);
+          player(button, game);
           ClearTime();
         
      });

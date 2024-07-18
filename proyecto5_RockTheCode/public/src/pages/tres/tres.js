@@ -18,11 +18,10 @@ export let localred;
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
 let copyCombinations = [];
 
-
 export const initDate = (red, yellow) => {
-     
-     localred = localStorage.getItem('pointRedTres'); 
-     localyellow=localStorage.getItem('pointYellowTres');
+
+     localred = localStorage.getItem(red);
+     localyellow = localStorage.getItem(yellow);
 
      if (localred) {
           countRed = localred;
@@ -32,7 +31,7 @@ export const initDate = (red, yellow) => {
      }
      if (localyellow) {
 
-         countYellow = localyellow;
+          countYellow = localyellow;
 
      } else {
 
@@ -45,21 +44,22 @@ export const setLocalstorage = (red, yellow) => {
 
      localStorage.setItem(red, countRed);
      localStorage.setItem(yellow, countYellow);
-    
+
 }
 
-const printLocalStorage = () => {
+export const printLocalStorage = () => {
 
      document.querySelector('#jugador-1').innerHTML = countYellow;
-                            
+
      document.querySelector('#jugador-2').innerHTML = countRed;
 }
 
-export const deleteLocalStore = (red,yellow) => {
+export const deleteLocalStore = (red, yellow) => {
 
      localStorage.removeItem(red);
      localStorage.removeItem(yellow);
 }
+
 
 
 const printThree = (posit,color) => {
@@ -237,13 +237,13 @@ const controlturnColor = (numero) => {
      
 }
 
-export const createTres = (button) => {
+export const createTres = (button, game) => {
 
      initDate('pointRedTres', 'pointYellowTres');
     
      countEndGame = 0;
-     createSection(button, 'Tres en Raya', '1', 'pointRedTres', 'pointYellowTres');
-     copyCombinations = JSON.parse(JSON.stringify(combinations));
+     createSection(button, game);
+     copyCombinations = structuredClone(combinations);
     
      const containerGame = document.querySelector('.container-game');
      const tablero = document.createElement('div');

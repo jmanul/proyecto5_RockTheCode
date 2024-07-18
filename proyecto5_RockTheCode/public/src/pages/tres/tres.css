@@ -2,10 +2,10 @@
      
      height:max-content;
      width: max-content;
-     border-radius: var(--xl);
-     background: transparent;
+     background:transparent;
      display:grid;
      grid-template-columns: 1fr 1fr 1fr ;
+   
      
 }
 
@@ -15,7 +15,7 @@
      width: 7rem;
      height: 7rem;
      border: var(--xs) solid var(--light-grey);
-     border-radius:var(--xl);
+  
      
 }
 

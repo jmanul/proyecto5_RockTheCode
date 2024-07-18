@@ -6,8 +6,6 @@ import { menu} from './public/src/data/data.js';
 import './style.css'
 
 
-
-
 const body = document.querySelector('body');
 const main = document.createElement('main');
 main.id = 'main';
@@ -15,6 +13,7 @@ main.className = 'flex-container';
 body.append(main);
 const header = document.createElement('header');
 body.insertBefore(header, main);
+
 
 export const menuInit = (list) => {
 
@@ -28,14 +27,29 @@ export const menuInit = (list) => {
                if (game.name === nameButton) {
 
 
-                    button.addEventListener('click', () => game.play(classButton));
-                         
+                    button.addEventListener('click', () => game.player(classButton,game));   
                }
 
           }
 
      }
-}
+};
+
+export const activeOption = (button, list) => {
+
+     for (const item of list) {
+
+          if (item.className.includes('seleccionado')) {
+
+               item.classList.remove('seleccionado');
+
+          }
+     };
+
+     const checket = document.querySelector(`.${button}`);
+     checket.classList.add('seleccionado')
+
+};
 
 
 export const init = () => {

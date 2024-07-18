@@ -4,21 +4,6 @@ import './list.css';
 
 import './list.css';
 
-export const activeOption = (button, list) => {
-
-     for (const item of list) {
-
-          if (item.className.includes('seleccionado')) {
-
-               item.classList.remove('seleccionado');
-
-          }
-     };
-
-     const checket = document.querySelector(`.${button}`);
-     checket.classList.add('seleccionado')
-    
-};
 
 export const createList = (site, list, name) => {
 
