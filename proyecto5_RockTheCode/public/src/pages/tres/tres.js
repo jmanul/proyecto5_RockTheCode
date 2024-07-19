@@ -197,7 +197,7 @@ export const initPlay = (numero) => {
      }
  };
 
-const controlturnColor = (numero) => {
+const controlturnColor = (numero, fin) => {
 
      const numberCasilla = document.querySelector(`#casilla-${numero}`);
      const containerGame = document.querySelector('.container-game');
@@ -218,11 +218,11 @@ const controlturnColor = (numero) => {
           numberCasilla.append(ficha);
           comprobation(numero);
           countEndGame++;
-          turnColorMarker();
+          turnColorMarker( fin);
 
      } 
 
-     if (countEndGame == 9) {
+     if (countEndGame == fin) {
 
           iconRed.classList.remove('icon-action');
           iconYellow.classList.remove('icon-action');
@@ -257,7 +257,7 @@ export const createTres = (button, game) => {
           casilla.id = `casilla-${i}`;
           casilla.classList.add('flex-container', 'casilla');
           tablero.append(casilla);
-          casilla.addEventListener('click', () => initPlay(i));
+          casilla.addEventListener('click', () => initPlay(i,9));
           
      }
        
