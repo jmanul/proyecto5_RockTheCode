@@ -1,22 +1,25 @@
 
 import { createMessage } from '../../components/message/message';
 import { ClearTime, createSection } from '../../components/section/section';
+import { roundQuestion } from '../trivial/trivial';
 
 import './tres.css'
 
 const colorRed = './src/assets/red.svg' ;
 const colorYellow = './src/assets/yellow.svg'; 
-export const nameRed = 'countRed';
-export const nameYellow = 'countYellow';
-export let turnPoint = nameRed;   
-export let turnColor = colorRed;
-export let countEndGame = 0;
-export let countRed;
-export let countYellow;
-export let localyellow;
-export let localred;
+const nameRed = 'countRed';
+const nameYellow = 'countYellow';
+let turnPoint = nameRed;   
+let turnColor = colorRed;
+let countEndGame = 0;
+let countRed;
+let countYellow;
+let localyellow;
+let localred;
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
 let copyCombinations = [];
+
+//? inicio de datos en memoria local
 
 export const initDate = (red, yellow) => {
 
@@ -60,7 +63,7 @@ export const deleteLocalStore = (red, yellow) => {
      localStorage.removeItem(yellow);
 }
 
-
+//? se pinta el resultado ganador en el tablero
 
 const printThree = (posit,color) => {
 
@@ -94,6 +97,7 @@ const printThree = (posit,color) => {
      }  
 }
 
+//? se acumula punto en el marcador
 
 export const printPoint = () => {
      const containerGame = document.querySelector('.container-game');
@@ -125,6 +129,8 @@ export const printPoint = () => {
      initDate('pointRedTres', 'pointYellowTres');
  
 };
+
+//? se comprueba si hay ganador 
 
 const comprobation = (numero) => { 
       
@@ -162,6 +168,8 @@ const comprobation = (numero) => {
     
 };
 
+//? se cambia el color del jugador
+
 export const turnColorMarker = () => {
 
      const iconYellow = document.querySelector('#iconJugador-1');
@@ -180,7 +188,9 @@ export const turnColorMarker = () => {
      }     
 }
 
-export const initPlay = (numero) => {
+//? inicio del juego comprobando si se ha iniciado el tiempo
+
+export const initPlay = (button ,numero, fin) => {
      
      const play = document.querySelector('#play');
      
@@ -192,10 +202,33 @@ export const initPlay = (numero) => {
           return;
 
      } else if (play.className === 'play-start') {
+
+          selectGame(button, numero, fin);
           
-          controlturnColor(numero);
      }
- };
+};
+
+//? llamamos a la funcion que inicia el juego en el que estemos jugando
+
+export const selectGame = (button ,numero, fin) => {
+     
+     if (button == 'tres-en-raya') {
+       
+          controlturnColor(numero, fin);
+          
+     } else if (button == 'trivial') {
+
+          roundQuestion(numero, fin); 
+           
+
+     } else if (button == 'ahorcado') {
+
+          console.log('ahorcado');
+     }
+}
+ 
+
+//? comprobamos si una casilla esta ocupada, el color de la ficha y el fin del juego
 
 const controlturnColor = (numero, fin) => {
 
@@ -203,14 +236,15 @@ const controlturnColor = (numero, fin) => {
      const containerGame = document.querySelector('.container-game');
      const iconYellow = document.querySelector('#iconJugador-1');
      const iconRed = document.querySelector('#iconJugador-2');
-     turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
-     turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
      
      if (numberCasilla.className.includes('ocupada')) {
           
           return; 
 
      } else {
+
+          turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
+          turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
           
           numberCasilla.classList.add('ocupada');
           const ficha = document.createElement('img');
@@ -218,7 +252,7 @@ const controlturnColor = (numero, fin) => {
           numberCasilla.append(ficha);
           comprobation(numero);
           countEndGame++;
-          turnColorMarker( fin);
+          turnColorMarker();
 
      } 
 
@@ -257,7 +291,7 @@ export const createTres = (button, game) => {
           casilla.id = `casilla-${i}`;
           casilla.classList.add('flex-container', 'casilla');
           tablero.append(casilla);
-          casilla.addEventListener('click', () => initPlay(i,9));
+          casilla.addEventListener('click', () => initPlay(button,i,9));
           
      }
        
