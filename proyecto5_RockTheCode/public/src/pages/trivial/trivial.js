@@ -1,6 +1,7 @@
 import { createMessage } from '../../components/message/message';
 import { ClearTime, createSection } from '../../components/section/section';
-import { initDate, initPlay, printLocalStorage, turnColorMarker } from '../tres/tres';
+import { preguntasTrivial } from '../../data/data';
+import { initDate, initPlay, printLocalStorage, turnColorMarker} from '../tres/tres';
 import './trivial.css'
 
 const colorRed = './src/assets/red.svg';
@@ -15,14 +16,32 @@ let countYellow;
 let localyellow;
 let localred;
 
+let answerCorrect;
+
+const resultAnswer = (answer) => {
+
+
+
+     if (answer == answerCorrect) {
+
+          console.log('es correcto'+ answerCorrect);
+
+     } else {
+
+          console.log('no es correcto' + answerCorrect);
+     }
+
+     countEndGame++;
+     turnColorMarker();
+}
 export const roundQuestion = (numero, fin) => {
 
-     const tema = document.querySelector(`#tema-${numero}`);
-     const question = document.querySelector('.question');
-     const text = document.querySelector('.text-question');
-     const containerGame = document.querySelector('.container-game');
+     
      const iconYellow = document.querySelector('#iconJugador-1');
      const iconRed = document.querySelector('#iconJugador-2');
+     const tema = document.querySelector(`#tema-${numero}`);
+     const text = document.querySelector('.text-question');
+     const containerGame = document.querySelector('.container-game');
 
      if (tema.className.includes('answered')) {
 
@@ -30,22 +49,18 @@ export const roundQuestion = (numero, fin) => {
 
      } else {
 
+          turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
+          turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
+
           tema.classList.add('answered');
-          text.innerHTML = 'pregunta';
+          var x = Math.floor(Math.random() * 20);
 
-          countEndGame++;
-
+          text.innerHTML = preguntasTrivial[numero].preguntas[x].pregunta;
+          answerCorrect = preguntasTrivial[numero].preguntas[x].respuesta; 
+         
      }
 
      if (countEndGame == fin) {
-
-          iconRed.classList.toggle('icon-action');
-          iconYellow.classList.toggle('icon-action');
-
-          // turnColor == nameRed ? turnColor = colorYellow : turnColor = colorRed;
-          // turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
-
-          // turnColorMarker();
 
           setTimeout(() => {
 
@@ -59,9 +74,9 @@ export const roundQuestion = (numero, fin) => {
 }
 
 export const createTrivial = (button,game) => { 
- 
-     initDate('pointRedTrivi', 'pointYellowTrivi');
 
+     initDate('pointRedTrivi', 'pointYellowTrivi');
+     countEndGame = 0;
      createSection(button,game);
      const containerGame = document.querySelector('.container-game');
     
@@ -69,9 +84,7 @@ export const createTrivial = (button,game) => {
      tableroQuestions.classList.add('tablero-questions', 'flex-container');
      const containerAnswers = document.createElement('div');
      containerAnswers.classList.add('flex-container', 'container-answers');
-     containerAnswers.innerHTML = `<div class="answer flex-container">
-  <input type="text" placeholder="respuesta" name="answer" id="answer"><button type="submit"><img src="./src/assets/arrow.svg" alt="send"></button>
-</div>`;
+     containerAnswers.innerHTML = `<form class="answer flex-container"> <input type="text" placeholder="respuesta" name="answer" id="answer"><button type="submit" id ="answerd-send"><img src="./src/assets/arrow.svg" alt="send"></button></form>`;
      containerGame.append(tableroQuestions, containerAnswers);
      const containerTemes = document.createElement('div');
      containerTemes.classList.add('container-temes');
@@ -86,7 +99,7 @@ export const createTrivial = (button,game) => {
           tema.classList.add('flex-container', 'tema', `tema-${i}`);
           containerTemes.append(tema);
           const temeQuestions = document.createElement('p');
-          temeQuestions.innerText = 'pregunta';
+          temeQuestions.innerText = preguntasTrivial[i].name;
           tema.append(temeQuestions);
           tema.addEventListener('click', () => initPlay(button,i,4));
      }
@@ -97,4 +110,12 @@ export const createTrivial = (button,game) => {
      const textQuestion = document.createElement('p');
      textQuestion.className = 'text-question';
      question.append(textQuestion);
+
+     const answerInput = document.querySelector('.answer')
+     answerInput.addEventListener('submit', (e) => {
+
+          e.preventDefault();
+          resultAnswer(e.target.answer.value);
+     });   
+    
 }

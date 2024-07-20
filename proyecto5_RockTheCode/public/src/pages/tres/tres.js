@@ -16,6 +16,7 @@ let countRed;
 let countYellow;
 let localyellow;
 let localred;
+
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
 let copyCombinations = [];
 
@@ -172,6 +173,8 @@ const comprobation = (numero) => {
 
 export const turnColorMarker = () => {
 
+     console.log('estoy en el turn color');
+
      const iconYellow = document.querySelector('#iconJugador-1');
      const iconRed = document.querySelector('#iconJugador-2');
      
@@ -185,7 +188,13 @@ export const turnColorMarker = () => {
           iconYellow.classList.remove('icon-action');
           iconRed.classList.add('icon-action');
 
-     }     
+     }  
+     
+     console.log('estoy en el turn color');
+     console.log(`estoy al final del trivial${turnColor}`);
+     console.log(`estoy al final del trivial${turnPoint}`);
+     console.log(`estoy al final del trivial${iconRed.classList}`);
+     console.log(`estoy al final del trivial${iconYellow.classList}`);
 }
 
 //? inicio del juego comprobando si se ha iniciado el tiempo
@@ -234,8 +243,6 @@ const controlturnColor = (numero, fin) => {
 
      const numberCasilla = document.querySelector(`#casilla-${numero}`);
      const containerGame = document.querySelector('.container-game');
-     const iconYellow = document.querySelector('#iconJugador-1');
-     const iconRed = document.querySelector('#iconJugador-2');
      
      if (numberCasilla.className.includes('ocupada')) {
           
@@ -257,9 +264,6 @@ const controlturnColor = (numero, fin) => {
      } 
 
      if (countEndGame == fin) {
-
-          iconRed.classList.remove('icon-action');
-          iconYellow.classList.remove('icon-action');
           
           setTimeout(() => {
               
