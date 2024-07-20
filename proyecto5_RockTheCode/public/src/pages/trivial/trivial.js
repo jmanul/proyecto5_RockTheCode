@@ -1,16 +1,15 @@
 import { createMessage } from '../../components/message/message';
 import { ClearTime, createSection } from '../../components/section/section';
 import { preguntasTrivial } from '../../data/data';
-import { initDate, initPlay, printLocalStorage, turnColorMarker} from '../tres/tres';
+import { initDate, initPlay, printLocalStorage, turnColorMarker } from '../tres/tres';
 import './trivial.css'
 
 const colorRed = './src/assets/red.svg';
 const colorYellow = './src/assets/yellow.svg';
 const nameRed = 'countRed';
 const nameYellow = 'countYellow';
-let turnPoint = nameRed;
-let turnColor = colorRed;
-let countEndGame = 0;
+let turnPoint;
+let turnColor;
 let countRed;
 let countYellow;
 let localyellow;
@@ -20,28 +19,42 @@ let answerCorrect;
 
 const resultAnswer = (answer) => {
 
+     const containerGame = document.querySelector('.container-game');
 
+     let answerTransform = answer.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+     let answerCorrectTransform = answerCorrect.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-     if (answer == answerCorrect) {
+     if (answerTransform.toLowerCase() == answerCorrectTransform.toLowerCase()) {
 
-          console.log('es correcto'+ answerCorrect);
+          setTimeout(() => {
+
+               createMessage(containerGame, `${answerCorrect} es correcto.😊`)
+               ClearTime();
+
+          }, 1000);
+
+          console.log('es correcto' + answerCorrectTransform.toLowerCase());
 
      } else {
+
+          setTimeout(() => {
+
+               createMessage(containerGame, `${answer} no es correcto, la respuesta correcta es ${answerCorrect}. 😒`)
+               ClearTime();
+
+          }, 1000);
 
           console.log('no es correcto' + answerCorrect);
      }
 
-     countEndGame++;
-     turnColorMarker();
+
 }
+
 export const roundQuestion = (numero, fin) => {
 
-     
-     const iconYellow = document.querySelector('#iconJugador-1');
-     const iconRed = document.querySelector('#iconJugador-2');
-     const tema = document.querySelector(`#tema-${numero}`);
      const text = document.querySelector('.text-question');
-     const containerGame = document.querySelector('.container-game');
+     const tema = document.querySelector(`#tema-${numero}`);
+     
 
      if (tema.className.includes('answered')) {
 
@@ -52,34 +65,22 @@ export const roundQuestion = (numero, fin) => {
           turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
           turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
 
-          tema.classList.add('answered');
           var x = Math.floor(Math.random() * 20);
 
           text.innerHTML = preguntasTrivial[numero].preguntas[x].pregunta;
-          answerCorrect = preguntasTrivial[numero].preguntas[x].respuesta; 
-         
+          answerCorrect = preguntasTrivial[numero].preguntas[x].respuesta;
+
      }
-
-     if (countEndGame == fin) {
-
-          setTimeout(() => {
-
-               createMessage(containerGame, 'termino su turno')
-               ClearTime();
-
-          }, 1000);
-     }
-
 
 }
 
-export const createTrivial = (button,game) => { 
+export const createTrivial = (button, game) => {
 
      initDate('pointRedTrivi', 'pointYellowTrivi');
-     countEndGame = 0;
-     createSection(button,game);
+
+     createSection(button, game);
      const containerGame = document.querySelector('.container-game');
-    
+
      const tableroQuestions = document.createElement('div');
      tableroQuestions.classList.add('tablero-questions', 'flex-container');
      const containerAnswers = document.createElement('div');
@@ -89,20 +90,23 @@ export const createTrivial = (button,game) => {
      const containerTemes = document.createElement('div');
      containerTemes.classList.add('container-temes');
      tableroQuestions.append(containerTemes);
-     
+
      printLocalStorage();
 
      for (let i = 0; i < 4; i++) {
 
           const tema = document.createElement('div');
           tema.id = `tema-${i}`;
-          tema.classList.add('flex-container', 'tema', `tema-${i}`);
+          tema.classList.add('flex-container', 'answered', 'tema', `tema-${i}`);
           containerTemes.append(tema);
           const temeQuestions = document.createElement('p');
           temeQuestions.innerText = preguntasTrivial[i].name;
           tema.append(temeQuestions);
-          tema.addEventListener('click', () => initPlay(button,i,4));
+          tema.addEventListener('click', () => initPlay(button, i, 4));
      }
+     var y = Math.floor(Math.random() * 4);
+     const temas = document.querySelectorAll('.tema');
+     temas[y].classList.remove('answered');
 
      const question = document.createElement('div');
      question.classList.add('question');
@@ -116,6 +120,6 @@ export const createTrivial = (button,game) => {
 
           e.preventDefault();
           resultAnswer(e.target.answer.value);
-     });   
-    
+     });
+
 }
