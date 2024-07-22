@@ -1,16 +1,16 @@
 
 import { createMessage } from '../../components/message/message';
-import { ClearTime, createSection } from '../../components/section/section';
+import { ClearTime} from '../../components/section/section';
 import { roundQuestion } from '../trivial/trivial';
 
 import './tres.css'
 
 const colorRed = './src/assets/red.svg' ;
 const colorYellow = './src/assets/yellow.svg'; 
-const nameRed = 'countRed';
-const nameYellow = 'countYellow';
-let turnPoint = nameRed;   
-let turnColor = colorRed;
+export const nameRed = 'countRed';
+export const nameYellow = 'countYellow';
+export let turnPoint = nameRed;   
+export let turnColor = colorRed;
 let countEndGame = 0;
 let countRed;
 let countYellow;
@@ -100,8 +100,8 @@ const printThree = (posit,color) => {
 
 //? se acumula punto en el marcador
 
-export const printPoint = () => {
-     const containerGame = document.querySelector('.container-game');
+export const printPoint = (red, yellow) => {
+    
      const gamerYellow = document.querySelector('#jugador-1');
      const gamerRed = document.querySelector('#jugador-2');
      const iconRed = document.querySelector('#iconJugador-2');
@@ -112,8 +112,6 @@ export const printPoint = () => {
           if (countYellow < 10) { countYellow = '0' + countYellow };
        
           gamerYellow.innerHTML = countYellow;
-          createMessage(containerGame, 'Gano el jugador amarillo');
-          ClearTime()
      
      } else if (turnPoint == nameRed) {
           iconRed.classList.remove('icon-action');
@@ -121,20 +119,23 @@ export const printPoint = () => {
           if (countRed < 10) { countRed = '0' + countRed };
           
           gamerRed.innerHTML = countRed;
-          createMessage(containerGame, 'Gano el jugador rojo');
-          ClearTime()
+          
           
      }
-    
-     setLocalstorage('pointRedTres', 'pointYellowTres');
-     initDate('pointRedTres', 'pointYellowTres');
+
+     ClearTime()
+     turnColorMarker();
+     setLocalstorage(red, yellow);
+     initDate(red, yellow);
  
 };
 
 //? se comprueba si hay ganador 
 
 const comprobation = (numero) => { 
-      
+     
+     const containerGame = document.querySelector('.container-game');
+
      for (let i = 0; i < copyCombinations.length; i++) { 
           let combination = copyCombinations[i];
          
@@ -156,9 +157,20 @@ const comprobation = (numero) => {
                               count++;  
                          }
                          if (count == 3) {
+
+                              if (turnPoint == nameYellow) {
+                                  
+                                   createMessage(containerGame, 'Gano el jugador amarillo');
+                                
+
+                              } else if (turnPoint == nameRed) {
+                                 
+                                   createMessage(containerGame, 'Gano el jugador rojo');
+
+                              }
                               
                               printThree(i,turnPoint);
-                              printPoint();
+                              printPoint('pointRedTres', 'pointYellowTres');
                          }
                     } 
   
@@ -172,8 +184,6 @@ const comprobation = (numero) => {
 //? se cambia el color del jugador
 
 export const turnColorMarker = () => {
-
-     console.log('estoy en el turn color');
 
      const iconYellow = document.querySelector('#iconJugador-1');
      const iconRed = document.querySelector('#iconJugador-2');
@@ -190,11 +200,6 @@ export const turnColorMarker = () => {
 
      }  
      
-     console.log('estoy en el turn color');
-     console.log(`estoy al final del trivial${turnColor}`);
-     console.log(`estoy al final del trivial${turnPoint}`);
-     console.log(`estoy al final del trivial${iconRed.classList}`);
-     console.log(`estoy al final del trivial${iconYellow.classList}`);
 }
 
 //? inicio del juego comprobando si se ha iniciado el tiempo
@@ -227,7 +232,7 @@ export const selectGame = (button ,numero, fin) => {
           
      } else if (button == 'trivial') {
 
-          roundQuestion(numero, fin); 
+          roundQuestion(numero); 
            
 
      } else if (button == 'ahorcado') {
@@ -275,28 +280,34 @@ const controlturnColor = (numero, fin) => {
      
 }
 
-export const createTres = (button, game) => {
-
+export const createTres = (button) => {
+     
      initDate('pointRedTres', 'pointYellowTres');
-    
+
      countEndGame = 0;
-     createSection(button, game);
+
      copyCombinations = structuredClone(combinations);
-    
+
      const containerGame = document.querySelector('.container-game');
+     containerGame.innerHTML = '';
      const tablero = document.createElement('div');
      tablero.className = 'tablero';
      containerGame.append(tablero);
+
      printLocalStorage();
-   
+
      for (let i = 0; i < 9; i++) {
 
           const casilla = document.createElement('div');
           casilla.id = `casilla-${i}`;
           casilla.classList.add('flex-container', 'casilla');
           tablero.append(casilla);
-          casilla.addEventListener('click', () => initPlay(button,i,9));
-          
+          casilla.addEventListener('click', () => initPlay(button, i, 9));
+
      }
-       
+     turnColorMarker();
 }
+         
+
+
+ 

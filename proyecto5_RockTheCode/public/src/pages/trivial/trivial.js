@@ -1,21 +1,31 @@
 import { createMessage } from '../../components/message/message';
-import { ClearTime, createSection } from '../../components/section/section';
+import { ClearTime} from '../../components/section/section';
 import { preguntasTrivial } from '../../data/data';
-import { initDate, initPlay, printLocalStorage, turnColorMarker } from '../tres/tres';
+import { initDate, initPlay, printLocalStorage, printPoint} from '../tres/tres';
 import './trivial.css'
 
-const colorRed = './src/assets/red.svg';
-const colorYellow = './src/assets/yellow.svg';
-const nameRed = 'countRed';
-const nameYellow = 'countYellow';
-let turnPoint;
-let turnColor;
-let countRed;
-let countYellow;
-let localyellow;
-let localred;
-
+let countGamer = 0;
 let answerCorrect;
+
+export const turnGamer = () => {
+      
+      console.log('estoy en turnGamer'+countGamer%2);
+      const iconYellow = document.querySelector('#iconJugador-1');
+      const iconRed = document.querySelector('#iconJugador-2');
+
+     if (countGamer%2 == 0) {
+
+           iconRed.classList.remove('icon-action');
+           iconYellow.classList.add('icon-action');
+
+     } else {
+           
+          iconYellow.classList.remove('icon-action');
+           iconRed.classList.add('icon-action');
+
+     }
+
+}
 
 const resultAnswer = (answer) => {
 
@@ -26,6 +36,7 @@ const resultAnswer = (answer) => {
 
      if (answerTransform.toLowerCase() == answerCorrectTransform.toLowerCase()) {
 
+
           setTimeout(() => {
 
                createMessage(containerGame, `${answerCorrect} es correcto.😊`)
@@ -33,9 +44,12 @@ const resultAnswer = (answer) => {
 
           }, 1000);
 
-          console.log('es correcto' + answerCorrectTransform.toLowerCase());
+          turnGamer();
+          printPoint('pointRedTrivi', 'pointYellowTrivi');
+
 
      } else {
+
 
           setTimeout(() => {
 
@@ -44,13 +58,15 @@ const resultAnswer = (answer) => {
 
           }, 1000);
 
-          console.log('no es correcto' + answerCorrect);
+   
      }
 
-
+     createTrivial('trivial');
+      countGamer++;
+      turnGamer();
 }
 
-export const roundQuestion = (numero, fin) => {
+export const roundQuestion = (numero) => {
 
      const text = document.querySelector('.text-question');
      const tema = document.querySelector(`#tema-${numero}`);
@@ -62,10 +78,7 @@ export const roundQuestion = (numero, fin) => {
 
      } else {
 
-          turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
-          turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
-
-          var x = Math.floor(Math.random() * 20);
+          let x = Math.floor(Math.random() * preguntasTrivial[numero].preguntas.length);
 
           text.innerHTML = preguntasTrivial[numero].preguntas[x].pregunta;
           answerCorrect = preguntasTrivial[numero].preguntas[x].respuesta;
@@ -74,13 +87,12 @@ export const roundQuestion = (numero, fin) => {
 
 }
 
-export const createTrivial = (button, game) => {
+export const createTrivial = (button) => {
 
      initDate('pointRedTrivi', 'pointYellowTrivi');
 
-     createSection(button, game);
      const containerGame = document.querySelector('.container-game');
-
+     containerGame.innerHTML = '';
      const tableroQuestions = document.createElement('div');
      tableroQuestions.classList.add('tablero-questions', 'flex-container');
      const containerAnswers = document.createElement('div');
@@ -102,9 +114,9 @@ export const createTrivial = (button, game) => {
           const temeQuestions = document.createElement('p');
           temeQuestions.innerText = preguntasTrivial[i].name;
           tema.append(temeQuestions);
-          tema.addEventListener('click', () => initPlay(button, i, 4));
+          tema.addEventListener('click', () => initPlay(button, i, 1));
      }
-     var y = Math.floor(Math.random() * 4);
+     let y = Math.floor(Math.random() * preguntasTrivial.length);
      const temas = document.querySelectorAll('.tema');
      temas[y].classList.remove('answered');
 
@@ -119,7 +131,18 @@ export const createTrivial = (button, game) => {
      answerInput.addEventListener('submit', (e) => {
 
           e.preventDefault();
-          resultAnswer(e.target.answer.value);
-     });
 
+          if (e.target.answer.value == '') {
+               
+               return;
+
+          } else {
+              
+               resultAnswer(e.target.answer.value);
+          }
+        
+         
+     });
+     
+     turnGamer();
 }

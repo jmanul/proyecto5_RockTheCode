@@ -1,6 +1,7 @@
 
 import { createList } from './public/src/components/list/list';
 import { createLogo } from './public/src/components/logo/logo';
+import { createSection } from './public/src/components/section/section.js';
 import { menu} from './public/src/data/data.js';
 
 import './style.css'
@@ -10,6 +11,7 @@ const body = document.querySelector('body');
 const main = document.createElement('main');
 main.id = 'main';
 main.className = 'flex-container';
+main.style.backgroundImage = 'url(./src/assets/backgraund.svg)';
 body.append(main);
 const header = document.createElement('header');
 body.insertBefore(header, main);
@@ -27,7 +29,7 @@ export const menuInit = (list) => {
                if (game.name === nameButton) {
 
 
-                    button.addEventListener('click', () => game.player(classButton,game));   
+                    button.addEventListener('click', () => createSection(classButton,game));   
                }
 
           }

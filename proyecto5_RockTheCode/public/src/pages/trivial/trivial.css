@@ -78,9 +78,9 @@
 .question p {
 
      height: 90%;
-     width: 80%;
+     width: 90%;
      border-left: 2px solid var(--light-grey);
-     padding-left: 10px;
+     padding-left: var(--xl);
      color: var(--light-grey);
      font-family: var(--text);
      font-size: var(--xl);

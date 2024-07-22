@@ -13,6 +13,8 @@
      background:var(--dark-grey);height: 200px;
      border-radius: var(--xl);
      border:var(--m) solid var(--red3);
+     padding: var(--xl);
+     text-align: left;
 
 }
 
