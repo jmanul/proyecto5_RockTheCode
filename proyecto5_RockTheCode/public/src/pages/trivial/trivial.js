@@ -1,29 +1,101 @@
 import { createMessage } from '../../components/message/message';
 import { ClearTime} from '../../components/section/section';
 import { preguntasTrivial } from '../../data/data';
-import { initDate, initPlay, printLocalStorage, printPoint} from '../tres/tres';
+import {initPlay} from '../tres/tres';
 import './trivial.css'
 
 let countGamer = 0;
 let answerCorrect;
 
-export const turnGamer = () => {
-      
-      console.log('estoy en turnGamer'+countGamer%2);
-      const iconYellow = document.querySelector('#iconJugador-1');
-      const iconRed = document.querySelector('#iconJugador-2');
+let countRed;
+let countYellow;
+let localYellow;
+let localRed;
 
+
+const initDate = (red, yellow) => {
+
+     localRed = localStorage.getItem(red);
+     localYellow = localStorage.getItem(yellow);
+
+     if (localRed) {
+          countRed = localRed;
+     } else {
+
+          countRed = '0' + 0;
+     }
+     if (localYellow) {
+
+          countYellow = localYellow;
+
+     } else {
+
+          countYellow = '0' + 0;
+     }
+
+}
+
+const setLocalstorage = (red, yellow) => {
+
+     localStorage.setItem(red, countRed);
+     localStorage.setItem(yellow, countYellow);
+
+}
+
+const printLocalStorage = () => {
+
+     document.querySelector('#jugador-1').innerHTML = countYellow;
+
+     document.querySelector('#jugador-2').innerHTML = countRed;
+}
+
+export const turnGamer = () => {
+
+      const iconYellow = document.querySelector('#iconJugador-1');
+     const iconRed = document.querySelector('#iconJugador-2');
+    
      if (countGamer%2 == 0) {
 
            iconRed.classList.remove('icon-action');
-           iconYellow.classList.add('icon-action');
+          iconYellow.classList.add('icon-action');
 
      } else {
            
           iconYellow.classList.remove('icon-action');
-           iconRed.classList.add('icon-action');
+          iconRed.classList.add('icon-action');
 
      }
+
+     ClearTime()
+
+}
+
+const addPoint = () => {
+      
+     const gamerYellow = document.querySelector('#jugador-1');
+     const gamerRed = document.querySelector('#jugador-2');
+
+     if (countGamer % 2 == 0) {
+
+          countYellow++;
+          if (countYellow < 10) { countYellow = '0' + countYellow };
+
+          gamerYellow.innerHTML = countYellow;
+
+
+     } else {
+
+          countRed++;
+          if (countRed < 10) { countRed = '0' + countRed };
+
+          gamerRed.innerHTML = countRed;
+
+     }
+
+     ClearTime()
+
+     setLocalstorage('pointRedTrivi', 'pointYellowTrivi');
+     initDate('pointRedTrivi', 'pointYellowTrivi');
 
 }
 
@@ -44,12 +116,9 @@ const resultAnswer = (answer) => {
 
           }, 1000);
 
-          turnGamer();
-          printPoint('pointRedTrivi', 'pointYellowTrivi');
-
+          addPoint();
 
      } else {
-
 
           setTimeout(() => {
 
@@ -60,8 +129,10 @@ const resultAnswer = (answer) => {
 
    
      }
+  
+     const answerbutton = document.querySelector('#answer-send');
+     answerbutton.style.pointerEvents = 'none';
 
-     createTrivial('trivial');
       countGamer++;
       turnGamer();
 }
@@ -97,7 +168,7 @@ export const createTrivial = (button) => {
      tableroQuestions.classList.add('tablero-questions', 'flex-container');
      const containerAnswers = document.createElement('div');
      containerAnswers.classList.add('flex-container', 'container-answers');
-     containerAnswers.innerHTML = `<form class="answer flex-container"> <input type="text" placeholder="respuesta" name="answer" id="answer"><button type="submit" id ="answerd-send"><img src="./src/assets/arrow.svg" alt="send"></button></form>`;
+     containerAnswers.innerHTML = `<form class="answer flex-container"> <input type="text" placeholder="respuesta" name="answer" id="answer"><button type="submit" id ="answer-send"><img src="./src/assets/arrow.svg" alt="send"></button></form>`;
      containerGame.append(tableroQuestions, containerAnswers);
      const containerTemes = document.createElement('div');
      containerTemes.classList.add('container-temes');
@@ -127,7 +198,7 @@ export const createTrivial = (button) => {
      textQuestion.className = 'text-question';
      question.append(textQuestion);
 
-     const answerInput = document.querySelector('.answer')
+     const answerInput = document.querySelector('.answer');
      answerInput.addEventListener('submit', (e) => {
 
           e.preventDefault();
@@ -144,5 +215,6 @@ export const createTrivial = (button) => {
          
      });
      
+     ClearTime();
      turnGamer();
 }

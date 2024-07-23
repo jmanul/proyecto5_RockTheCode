@@ -164,6 +164,7 @@ section {
 .play-start {
 
      opacity: .2;
+     pointer-events: none;
 }
 
 .clear {
@@ -191,6 +192,7 @@ section {
 
 .active {
 
-     animation: movi .8s linear .2s infinite;
+     animation: movi .8s linear  4;
+     pointer-events: visible;
 
 }

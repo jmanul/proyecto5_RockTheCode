@@ -1,41 +1,50 @@
 
 import { createMessage } from '../../components/message/message';
 import { ClearTime} from '../../components/section/section';
+
 import { roundQuestion } from '../trivial/trivial';
 
-import './tres.css'
+import './tres.css';
 
-const colorRed = './src/assets/red.svg' ;
-const colorYellow = './src/assets/yellow.svg'; 
-export const nameRed = 'countRed';
-export const nameYellow = 'countYellow';
-export let turnPoint = nameRed;   
-export let turnColor = colorRed;
+const colorRed = './src/assets/red.svg';
+const colorYellow = './src/assets/yellow.svg';
+const nameRed = 'countRed';
+const nameYellow = 'countYellow';
+let turnPoint = nameRed;
+let turnColor = colorRed;
 let countEndGame = 0;
-let countRed;
-let countYellow;
-let localyellow;
-let localred;
+
+
+const itemsLocal = {
+
+     countRed: 0,
+     countYellow: 0,
+     localYellow: 0,
+     localRed: 0
+};
+
+let { countRed, countYellow, localRed, localYellow } = itemsLocal;
 
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
+
 let copyCombinations = [];
 
 //? inicio de datos en memoria local
 
-export const initDate = (red, yellow) => {
+const initDate = (red, yellow) => {
 
-     localred = localStorage.getItem(red);
-     localyellow = localStorage.getItem(yellow);
+     localRed = localStorage.getItem(red);
+     localYellow = localStorage.getItem(yellow);
 
-     if (localred) {
-          countRed = localred;
+     if (localRed) {
+          countRed = localRed;
      } else {
 
           countRed = '0' + 0;
      }
-     if (localyellow) {
+     if (localYellow) {
 
-          countYellow = localyellow;
+          countYellow = localYellow;
 
      } else {
 
@@ -44,14 +53,14 @@ export const initDate = (red, yellow) => {
 
 }
 
-export const setLocalstorage = (red, yellow) => {
+const setLocalstorage = (red, yellow) => {
 
      localStorage.setItem(red, countRed);
      localStorage.setItem(yellow, countYellow);
 
 }
 
-export const printLocalStorage = () => {
+const printLocalStorage = () => {
 
      document.querySelector('#jugador-1').innerHTML = countYellow;
 
@@ -90,7 +99,6 @@ const printThree = (posit,color) => {
                     ficha.style.width = '70%';
                     ficha.style.height = '70%';
 
-
                }
 
           });
@@ -98,37 +106,37 @@ const printThree = (posit,color) => {
      }  
 }
 
-//? se acumula punto en el marcador
+//? se busca ganador 
 
-export const printPoint = (red, yellow) => {
+export const searchWinner = (red, yellow) => {
     
+
      const gamerYellow = document.querySelector('#jugador-1');
      const gamerRed = document.querySelector('#jugador-2');
-     const iconRed = document.querySelector('#iconJugador-2');
-    
+
      if (turnPoint == nameYellow) {
-          iconRed.classList.remove('icon-action');
+        
           countYellow++;
           if (countYellow < 10) { countYellow = '0' + countYellow };
-       
+
           gamerYellow.innerHTML = countYellow;
-     
+
      } else if (turnPoint == nameRed) {
-          iconRed.classList.remove('icon-action');
+         
           countRed++;
           if (countRed < 10) { countRed = '0' + countRed };
-          
+
           gamerRed.innerHTML = countRed;
-          
-          
+
      }
 
      ClearTime()
-     turnColorMarker();
+   
      setLocalstorage(red, yellow);
      initDate(red, yellow);
- 
+    
 };
+
 
 //? se comprueba si hay ganador 
 
@@ -170,7 +178,7 @@ const comprobation = (numero) => {
                               }
                               
                               printThree(i,turnPoint);
-                              printPoint('pointRedTres', 'pointYellowTres');
+                          searchWinner('pointRedTres', 'pointYellowTres');
                          }
                     } 
   
@@ -216,7 +224,8 @@ export const initPlay = (button ,numero, fin) => {
           return;
 
      } else if (play.className === 'play-start') {
-
+          
+      
           selectGame(button, numero, fin);
           
      }
@@ -229,6 +238,7 @@ export const selectGame = (button ,numero, fin) => {
      if (button == 'tres-en-raya') {
        
           controlturnColor(numero, fin);
+
           
      } else if (button == 'trivial') {
 
@@ -306,6 +316,7 @@ export const createTres = (button) => {
 
      }
      turnColorMarker();
+
 }
          
 

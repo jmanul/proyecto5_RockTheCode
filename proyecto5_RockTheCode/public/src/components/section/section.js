@@ -1,6 +1,6 @@
 import { activeOption, init, menuInit } from '../../../../main';
-import { menu } from '../../data/data';
-import { deleteLocalStore, initDate, printLocalStorage} from '../../pages/tres/tres';
+import { menu} from '../../data/data';
+import { deleteLocalStore} from '../../pages/tres/tres';
 import { createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 import { createMessage } from '../message/message';
@@ -28,56 +28,64 @@ const tiempo = (time) => {
      if (play.className == 'play-start') {
 
           return;
+
+     } else {
+
+          play.classList.add('play-start');
+          play.classList.remove('active');
+        
+
+          s = '0' + 0;
+          m = '0' + 0;
+
+          contador = setInterval(() => {
+
+               s++;
+
+               if (s < 10) {
+
+                    s = '0' + s;
+               }
+
+               if (s == 60) {
+
+                    s = '0' + 0;
+
+                    if (m <= '0' + time) {
+
+                         m++
+                         m = '0' + m;
+
+                    }
+               }
+
+               if (m == '0' + time) {
+
+                    setTimeout(() => {
+
+                         ClearTime();
+                         const section = document.querySelector('section');
+                         createMessage(section, 'se agoto su tiempo');
+
+                    }, 500);
+
+               }
+
+               printNumber();
+
+          }, 1000);
+
+
      }
 
-     play.classList.add('play-start');
-     play.classList.remove('active');
-      
-     s = '0' + 0;
-     m = '0' + 0;
-
-     contador = setInterval(() => {
-           
-          s++;
-
-          if (s < 10) {
-
-               s = '0' + s;
-          }
-          
-          if (s == 60) {
-               
-               s = '0' + 0;
-
-               if (m <= '0'+time) {
-                    
-                    m++ 
-                    m = '0'+ m;
-
-               } 
-          } 
-
-          if (m == '0' + time) {
-
-               setTimeout(() => {
-
-                    ClearTime();
-                    const section = document.querySelector('section');
-                    createMessage(section, 'se agoto su tiempo');
-                   
-               }, 500);
- 
-          }
-
-          printNumber();
-
-     }, 1000);
+    
 
 }
 
 export const ClearTime = () => {
 
      const play = document.querySelector('#play');
+     
      play.classList.remove('play-start');
      clearInterval(contador);
      s ='0'+0;
@@ -89,7 +97,7 @@ export const createSection = (button, game) => {
 
      const { name, time, player, claveRed, claveYellow } = game;
 
-     initDate(claveRed, claveYellow);
+     // initDate(claveRed, claveYellow);
      
      const header = document.querySelector('header');
      header.innerHTML = '';
@@ -142,14 +150,19 @@ export const createSection = (button, game) => {
 
      logoInicio.onclick = init;
 
-     printLocalStorage();
+     // printLocalStorage();
+
+     ClearTime();
      
      const play = document.querySelector('#play').addEventListener('click', () => {
+               
          
-          player(button);
-          tiempo(time);
+               player(button);
+               tiempo(time);
+
           
      });
+
      const reload = document.querySelector('#reload').addEventListener('click', () => {
           
           player(button);
@@ -158,10 +171,10 @@ export const createSection = (button, game) => {
  
      clear.addEventListener('click', () => {   
          
+          
+          ClearTime();
           deleteLocalStore(claveRed, claveYellow);
           player(button);
-          ClearTime();
-        
      });
 
 }
