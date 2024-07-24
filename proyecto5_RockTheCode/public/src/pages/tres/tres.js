@@ -244,10 +244,6 @@ export const selectGame = (button ,numero, fin) => {
 
           roundQuestion(numero); 
            
-
-     } else if (button == 'ahorcado') {
-
-          console.log('ahorcado');
      }
 }
  

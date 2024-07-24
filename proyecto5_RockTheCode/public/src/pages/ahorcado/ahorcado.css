@@ -1,0 +1,156 @@
+.table-ahorcado {
+
+     background: var(--dark-grey);
+     height: 21rem;
+     width: 100%;
+     border-radius: var(--xl);
+}
+
+.keywors-container,
+.drawing-container {
+     
+     position: relative;
+     height: 100%;
+     width: 48%;
+     max-width: 21rem;
+
+}
+
+.drawing-container svg {
+
+     position: absolute;
+     left:0;
+     height: 100%;
+     width: 70%;
+
+}
+
+.keywors-container {
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     justify-content: center;
+     align-content: center;
+     flex-direction: column;
+     gap: var(--xxl);
+
+}
+
+.keywor-secret-container {
+
+     height: auto;
+     width: 100%;
+     border-radius: var(--xxl);
+
+
+}
+
+.winer {
+
+     background: var(--light-grey);
+     padding: var(--m) ;
+     font-size: 30px;
+
+}
+
+.letter-container-off,
+.add-letter-container input,
+.letter-container-on {
+
+     height: 100%;
+     width: 7%;
+     background: var(--light-grey);
+     border-radius: var(--m);
+     font-size: 1.5rem;
+     font-family: var(--text);
+     font-weight: bold;
+     color: transparent;
+}
+
+.letter-container-on {
+
+     color: var(--red);
+}
+
+.add-letter-container {
+
+     bottom: var(--xl);
+     color: var(--light-grey);
+     font-family: var(--text);
+     border: var(--light-grey) solid var(--xs);
+     padding: var(--l);
+     border-radius: var(--l);
+
+}
+
+.add-letter {
+
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+
+
+}
+
+.add-letter-container div {
+     width: max-content;
+     margin-top: 1rem;
+     background: var(--light-grey);
+     border-radius: var(--l);
+
+}
+
+.add-letter-container input {
+
+     cursor: pointer;
+     background: var(--light-grey);
+     height: 2rem;
+     width: 2rem;
+     border: var(--light-grey) var(--s) solid;
+     border-bottom-right-radius: var(--l);
+     border-top-right-radius: var(--l);
+     color: var(--dark-grey);
+     padding-left: .5rem;
+     font-size: 1.5rem;
+     color: var(--red);
+}
+
+.add-letter-container button,
+.add-letter-container button img {
+
+     cursor: pointer;
+     background: var(--red3);
+     height: 2.5rem;
+     width: 3rem;
+     border: var(--light-grey) var(--s) solid;
+     border-bottom-right-radius: var(--l);
+     border-top-right-radius: var(--l);
+
+     &:hover {
+
+          background: var(--dark-grey)
+     }
+}
+
+.add-letter-container button img {
+
+     height: 100%;
+     width: 100%;
+     border: transparent var(--s) solid;
+
+}
+
+.count-input {
+
+     bottom: 0;
+     height: 45px;
+     width: 45px;
+     background: var(--light-grey);
+     border-radius: 50%;
+     font-family: var(--text);
+     font-weight: bold;
+     color: var(--red);
+     font-size: 1.5rem;
+}

@@ -210,9 +210,7 @@ export const createTrivial = (button) => {
           } else {
               
                resultAnswer(e.target.answer.value);
-          }
-        
-         
+          }      
      });
      
      ClearTime();
