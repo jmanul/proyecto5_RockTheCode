@@ -84,6 +84,14 @@
 
 }
 
+.add-letter-container div {
+     width: max-content;
+     margin-top: 1rem;
+     background: var(--light-grey);
+     border-radius: var(--l);
+
+}
+
 .add-letter {
 
      display: flex;
@@ -91,14 +99,6 @@
      justify-content: center;
      align-items: center;
 
-
-}
-
-.add-letter-container div {
-     width: max-content;
-     margin-top: 1rem;
-     background: var(--light-grey);
-     border-radius: var(--l);
 
 }
 
@@ -112,7 +112,7 @@
      border-bottom-right-radius: var(--l);
      border-top-right-radius: var(--l);
      color: var(--dark-grey);
-     padding-left: .5rem;
+     padding-left: .3rem;
      font-size: 1.5rem;
      color: var(--red);
 }

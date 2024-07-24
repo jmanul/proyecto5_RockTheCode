@@ -34,3 +34,12 @@
     right:10px;
 
 }
+
+@media (max-width: 450px) {
+
+.container-message>div {
+
+      width: 90%;
+
+     }
+}

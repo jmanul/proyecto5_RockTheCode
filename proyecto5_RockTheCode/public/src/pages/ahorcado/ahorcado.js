@@ -1,28 +1,34 @@
 
+import { createForm } from '../../components/form/form';
 import { createMessage } from '../../components/message/message';
 import { ClearTime } from '../../components/section/section';
 import { imagesAhorcado, keyworsAhorcado } from '../../data/data';
-import { turnGamer } from '../trivial/trivial';
+import { addPoint, initDate, printLocalStorage, turnGamer } from '../trivial/trivial';
 import './ahorcado.css';
 
-let fowing = 0;
 let countLetteradd = 0;
 let correctKeyword;
 let letterUp = 0;
+let countGamer = 0;
 
 const compareWiner = () => {
       
      const containerGame = document.querySelector('.container-game');
      const keyworSecretContainer = document.querySelector('.keywor-secret-container');
+     const letterSend = document.querySelector('#letter-send');
      
      if (correctKeyword.length == letterUp) {
             
           keyworSecretContainer.classList.add('winer');
           setTimeout(() => {
-
+     
                createMessage(containerGame, 'Enhorabuena, has ganado.😊')
+              
                ClearTime();
-               fowing++;
+               addPoint(countGamer, 'pointRedAhor', 'pointYellowAhor');
+               countGamer++;
+
+               letterSend.style.pointerEvents = 'none';
 
           }, 1000);
           
@@ -59,12 +65,12 @@ const compareLetter = (letter) => {
 
                createMessage(containerGame, `Se agotaron todos los intentos,la palabra que buscabas es ${correctKeyword.toUpperCase()} 😬`)
                ClearTime();
-               fowing++;
+               countGamer++;
 
           }, 1000);
      } else {
           
-          createInput();
+          createForm();
 
           let someLetter = false;
 
@@ -87,38 +93,15 @@ const compareLetter = (letter) => {
                printAhorcadoPart();
           }
      }
-
-      console.log(correctKeyword);
-     console.log(letter);
-     console.log(countLetteradd);
      
 }
-const createInput = () => {
 
-     const addLetterContainer = document.querySelector('.add-letter-container');
-     addLetterContainer.innerHTML = `<form class="add-letter">Introduce una letra <div class="flex-container"><input type="text" name="letter" id="letter-input" required minlength="1" maxlength="1"><button type="submit" id ="letter-send"><img src="./src/assets/arrow.svg" alt="send"></button></div></form>`;
-    
-     const sendLetter = document.querySelector('.add-letter');
-     sendLetter.addEventListener('submit', (e) => {
-
-          e.preventDefault();
-
-          if (e.target.letter.value == '') {
-
-               return;
-
-          } else {
-
-               compareLetter(e.target.letter.value.toLowerCase());
-          }
-     });
-
-}
 export const createAhorcado = (button) => {
 
      countLetteradd = 0;
+     letterUp = 0;
 
-     // initDate('pointRedAhor', 'pointYellowAhor');
+     initDate('pointRedAhor', 'pointYellowAhor');
 
      const containerGame = document.querySelector('.container-game');
      containerGame.innerHTML = '';
@@ -151,7 +134,7 @@ export const createAhorcado = (button) => {
 
      }
      
-     // printLocalStorage();
+     printLocalStorage();
 
      const addLetterContainer = document.createElement('div');
      addLetterContainer.classList.add('add-letter-container');
@@ -159,9 +142,9 @@ export const createAhorcado = (button) => {
      countInput.classList.add('count-input', 'flex-container');
      keyworsContainer.append(countInput, addLetterContainer);
 
-     createInput();
+     createForm();
      ClearTime();
-     turnGamer(fowing);
+     turnGamer(countGamer);
 
 
    

@@ -112,3 +112,20 @@ main {
   
 
 }
+
+@media (max-width: 450px) {
+
+  p {
+
+
+    font-size: 15px;
+
+  }
+
+  img {
+
+    width: 2rem;
+
+  }
+
+}

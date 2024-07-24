@@ -1,6 +1,7 @@
 import { activeOption, init, menuInit } from '../../../../main';
 import { menu} from '../../data/data';
-import { deleteLocalStore} from '../../pages/tres/tres';
+import { deleteLocalStore } from '../../pages/trivial/trivial';
+
 import { createList } from '../list/list';
 import { createLogo } from '../logo/logo';
 import { createMessage } from '../message/message';

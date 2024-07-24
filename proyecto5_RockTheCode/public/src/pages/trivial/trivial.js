@@ -12,8 +12,9 @@ let countYellow;
 let localYellow;
 let localRed;
 
+//? inicio de datos en memoria local
 
-const initDate = (red, yellow) => {
+export const initDate = (red, yellow) => {
 
      localRed = localStorage.getItem(red);
      localYellow = localStorage.getItem(yellow);
@@ -35,18 +36,24 @@ const initDate = (red, yellow) => {
 
 }
 
-const setLocalstorage = (red, yellow) => {
+export const setLocalstorage = (red, yellow) => {
 
      localStorage.setItem(red, countRed);
      localStorage.setItem(yellow, countYellow);
 
 }
 
-const printLocalStorage = () => {
+export const printLocalStorage = () => {
 
      document.querySelector('#jugador-1').innerHTML = countYellow;
 
      document.querySelector('#jugador-2').innerHTML = countRed;
+}
+
+export const deleteLocalStore = (red, yellow) => {
+
+     localStorage.removeItem(red);
+     localStorage.removeItem(yellow);
 }
 
 export const turnGamer = (turn) => {
@@ -70,7 +77,7 @@ export const turnGamer = (turn) => {
 
 }
 
-const addPoint = () => {
+export const addPoint = (countGamer,red ,yellow) => {
       
      const gamerYellow = document.querySelector('#jugador-1');
      const gamerRed = document.querySelector('#jugador-2');
@@ -94,10 +101,11 @@ const addPoint = () => {
 
      ClearTime()
 
-     setLocalstorage('pointRedTrivi', 'pointYellowTrivi');
-     initDate('pointRedTrivi', 'pointYellowTrivi');
+     setLocalstorage(red, yellow);
+     initDate(red, yellow);
 
 }
+
 
 const resultAnswer = (answer) => {
 
@@ -116,7 +124,7 @@ const resultAnswer = (answer) => {
 
           }, 1000);
 
-          addPoint();
+          addPoint(countGamer, 'pointRedTrivi', 'pointYellowTrivi');
 
      } else {
 

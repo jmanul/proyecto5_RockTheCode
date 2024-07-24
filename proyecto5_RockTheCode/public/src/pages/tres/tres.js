@@ -2,7 +2,7 @@
 import { createMessage } from '../../components/message/message';
 import { ClearTime} from '../../components/section/section';
 
-import { roundQuestion } from '../trivial/trivial';
+import { addPoint, initDate, printLocalStorage, roundQuestion } from '../trivial/trivial';
 
 import './tres.css';
 
@@ -13,65 +13,12 @@ const nameYellow = 'countYellow';
 let turnPoint = nameRed;
 let turnColor = colorRed;
 let countEndGame = 0;
-
-
-const itemsLocal = {
-
-     countRed: 0,
-     countYellow: 0,
-     localYellow: 0,
-     localRed: 0
-};
-
-let { countRed, countYellow, localRed, localYellow } = itemsLocal;
+let countGamer = 1;
 
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
 
 let copyCombinations = [];
 
-//? inicio de datos en memoria local
-
-const initDate = (red, yellow) => {
-
-     localRed = localStorage.getItem(red);
-     localYellow = localStorage.getItem(yellow);
-
-     if (localRed) {
-          countRed = localRed;
-     } else {
-
-          countRed = '0' + 0;
-     }
-     if (localYellow) {
-
-          countYellow = localYellow;
-
-     } else {
-
-          countYellow = '0' + 0;
-     }
-
-}
-
-const setLocalstorage = (red, yellow) => {
-
-     localStorage.setItem(red, countRed);
-     localStorage.setItem(yellow, countYellow);
-
-}
-
-const printLocalStorage = () => {
-
-     document.querySelector('#jugador-1').innerHTML = countYellow;
-
-     document.querySelector('#jugador-2').innerHTML = countRed;
-}
-
-export const deleteLocalStore = (red, yellow) => {
-
-     localStorage.removeItem(red);
-     localStorage.removeItem(yellow);
-}
 
 //? se pinta el resultado ganador en el tablero
 
@@ -106,43 +53,13 @@ const printThree = (posit,color) => {
      }  
 }
 
-//? se busca ganador 
-
-export const searchWinner = (red, yellow) => {
-    
-
-     const gamerYellow = document.querySelector('#jugador-1');
-     const gamerRed = document.querySelector('#jugador-2');
-
-     if (turnPoint == nameYellow) {
-        
-          countYellow++;
-          if (countYellow < 10) { countYellow = '0' + countYellow };
-
-          gamerYellow.innerHTML = countYellow;
-
-     } else if (turnPoint == nameRed) {
-         
-          countRed++;
-          if (countRed < 10) { countRed = '0' + countRed };
-
-          gamerRed.innerHTML = countRed;
-
-     }
-
-     ClearTime()
-   
-     setLocalstorage(red, yellow);
-     initDate(red, yellow);
-    
-};
-
-
 //? se comprueba si hay ganador 
 
 const comprobation = (numero) => { 
      
      const containerGame = document.querySelector('.container-game');
+
+     countGamer++
 
      for (let i = 0; i < copyCombinations.length; i++) { 
           let combination = copyCombinations[i];
@@ -178,7 +95,7 @@ const comprobation = (numero) => {
                               }
                               
                               printThree(i,turnPoint);
-                          searchWinner('pointRedTres', 'pointYellowTres');
+                              addPoint(countGamer,'pointRedTres', 'pointYellowTres');
                          }
                     } 
   
