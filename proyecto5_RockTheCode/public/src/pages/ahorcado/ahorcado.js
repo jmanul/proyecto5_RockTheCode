@@ -5,6 +5,7 @@ import { imagesAhorcado, keyworsAhorcado } from '../../data/data';
 import { turnGamer } from '../trivial/trivial';
 import './ahorcado.css';
 
+let fowing = 0;
 let countLetteradd = 0;
 let correctKeyword;
 let letterUp = 0;
@@ -21,6 +22,7 @@ const compareWiner = () => {
 
                createMessage(containerGame, 'Enhorabuena, has ganado.😊')
                ClearTime();
+               fowing++;
 
           }, 1000);
           
@@ -57,6 +59,7 @@ const compareLetter = (letter) => {
 
                createMessage(containerGame, `Se agotaron todos los intentos,la palabra que buscabas es ${correctKeyword.toUpperCase()} 😬`)
                ClearTime();
+               fowing++;
 
           }, 1000);
      } else {
@@ -114,7 +117,7 @@ const createInput = () => {
 export const createAhorcado = (button) => {
 
      countLetteradd = 0;
-     
+
      // initDate('pointRedAhor', 'pointYellowAhor');
 
      const containerGame = document.querySelector('.container-game');
@@ -158,7 +161,7 @@ export const createAhorcado = (button) => {
 
      createInput();
      ClearTime();
-     turnGamer();
+     turnGamer(fowing);
 
 
    

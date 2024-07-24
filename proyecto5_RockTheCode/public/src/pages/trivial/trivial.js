@@ -49,12 +49,12 @@ const printLocalStorage = () => {
      document.querySelector('#jugador-2').innerHTML = countRed;
 }
 
-export const turnGamer = () => {
+export const turnGamer = (turn) => {
 
       const iconYellow = document.querySelector('#iconJugador-1');
      const iconRed = document.querySelector('#iconJugador-2');
     
-     if (countGamer%2 == 0) {
+     if (turn%2 == 0) {
 
            iconRed.classList.remove('icon-action');
           iconYellow.classList.add('icon-action');
@@ -134,7 +134,7 @@ const resultAnswer = (answer) => {
      answerbutton.style.pointerEvents = 'none';
 
       countGamer++;
-      turnGamer();
+     turnGamer(countGamer);
 }
 
 export const roundQuestion = (numero) => {
@@ -214,5 +214,5 @@ export const createTrivial = (button) => {
      });
      
      ClearTime();
-     turnGamer();
+     turnGamer(countGamer);
 }
