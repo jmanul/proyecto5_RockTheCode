@@ -73,8 +73,6 @@ export const turnGamer = (turn) => {
 
      }
 
-     ClearTime()
-
 }
 
 export const addPoint = (countGamer,red ,yellow) => {

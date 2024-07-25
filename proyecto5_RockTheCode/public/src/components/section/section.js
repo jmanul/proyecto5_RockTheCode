@@ -106,7 +106,14 @@ export const createSection = (button, game) => {
      const logoInicio = document.querySelector('#logo-header');
      createList(header, menu, 'menu-header'); 
      const list = document.querySelectorAll('#menu-header-list li');
-     
+     const menuIconMovile = document.createElement('div');
+     menuIconMovile.className = 'menu-icon-menu';
+     menuIconMovile.id = 'menu-icon-movile';
+     menuIconMovile.innerHTML = ` <img class= 'icon-menu' src='./src/assets/menu.svg'>`;
+     header.append(menuIconMovile);
+     const listContainer = document.querySelector('#menu-header-list');
+     menuIconMovile.addEventListener('click', () => listContainer.classList.toggle('movile-menu','menu-header-off'));
+
      menuInit(list);
      activeOption(button, list);
      

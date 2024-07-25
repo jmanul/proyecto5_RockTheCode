@@ -2,7 +2,7 @@
 import { createMessage } from '../../components/message/message';
 import { ClearTime} from '../../components/section/section';
 
-import { addPoint, initDate, printLocalStorage, roundQuestion } from '../trivial/trivial';
+import { addPoint, initDate, printLocalStorage, roundQuestion, turnGamer } from '../trivial/trivial';
 
 import './tres.css';
 
@@ -13,7 +13,7 @@ const nameYellow = 'countYellow';
 let turnPoint = nameRed;
 let turnColor = colorRed;
 let countEndGame = 0;
-let countGamer = 1;
+let countGamer = 0;
 
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
 
@@ -58,8 +58,6 @@ const printThree = (posit,color) => {
 const comprobation = (numero) => { 
      
      const containerGame = document.querySelector('.container-game');
-
-     countGamer++
 
      for (let i = 0; i < copyCombinations.length; i++) { 
           let combination = copyCombinations[i];
@@ -106,26 +104,6 @@ const comprobation = (numero) => {
     
 };
 
-//? se cambia el color del jugador
-
-export const turnColorMarker = () => {
-
-     const iconYellow = document.querySelector('#iconJugador-1');
-     const iconRed = document.querySelector('#iconJugador-2');
-     
-     if (turnColor == colorRed) {
-     
-          iconRed.classList.remove('icon-action');
-          iconYellow.classList.add('icon-action');
-        
-     } else if (turnColor == colorYellow) {
-
-          iconYellow.classList.remove('icon-action');
-          iconRed.classList.add('icon-action');
-
-     }  
-     
-}
 
 //? inicio del juego comprobando si se ha iniciado el tiempo
 
@@ -187,7 +165,8 @@ const controlturnColor = (numero, fin) => {
           numberCasilla.append(ficha);
           comprobation(numero);
           countEndGame++;
-          turnColorMarker();
+          countGamer++;
+          turnGamer(countGamer);
 
      } 
 
@@ -228,7 +207,7 @@ export const createTres = (button) => {
           casilla.addEventListener('click', () => initPlay(button, i, 9));
 
      }
-     turnColorMarker();
+     turnGamer(countGamer);
 
 }
          
