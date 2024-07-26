@@ -13,7 +13,7 @@ const nameYellow = 'countYellow';
 let turnPoint = nameRed;
 let turnColor = colorRed;
 let countEndGame = 0;
-let countGamer = 0;
+let countGamer = 1;
 
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
 
@@ -55,110 +55,112 @@ const printThree = (posit,color) => {
 
 //? se comprueba si hay ganador 
 
-const comprobation = (numero) => { 
-     
+const comprobation = (numero) => {
+
      const containerGame = document.querySelector('.container-game');
 
-     for (let i = 0; i < copyCombinations.length; i++) { 
+     for (let i = 0; i < copyCombinations.length; i++) {
           let combination = copyCombinations[i];
-         
+
           let count = 0;
 
           for (let y = 0; y < combination.length; y++) {
-               
+
                let numberCasilla = combination[y];
 
                if (numberCasilla == numero) {
-                     
-                    combination.splice(y,1, turnPoint);
-                       
+
+                    combination.splice(y, 1, turnPoint);
+
                     for (let x = 0; x < combination.length; x++) {
-                           
+
                          let element = combination[x];
                          if (element == turnPoint) {
-                             
-                              count++;  
+
+                              count++;
                          }
                          if (count == 3) {
 
                               if (turnPoint == nameYellow) {
-                                  
+
                                    createMessage(containerGame, 'Gano el jugador amarillo');
-                                
+
 
                               } else if (turnPoint == nameRed) {
-                                 
+
                                    createMessage(containerGame, 'Gano el jugador rojo');
 
                               }
-                              
-                              printThree(i,turnPoint);
-                              addPoint(countGamer,'pointRedTres', 'pointYellowTres');
+                            
+                              printThree(i, turnPoint);
+                              addPoint(countGamer, 'pointRedTres', 'pointYellowTres');
+                              countGamer--;
+                             
                          }
-                    } 
-  
+                    }
+
                }
           }
-     
+
      }
-    
+
+
 };
 
 
 //? inicio del juego comprobando si se ha iniciado el tiempo
 
-export const initPlay = (button ,numero, fin) => {
-     
+export const initPlay = (button, numero, fin) => {
+
      const play = document.querySelector('#play');
-     
+
      if (play.className !== 'play-start') {
-         
+
           const section = document.querySelector('section')
           createMessage(section, 'pulsa play para empezar')
-          
+
           return;
 
      } else if (play.className === 'play-start') {
-          
-      
+
+
           selectGame(button, numero, fin);
-          
+
      }
 };
 
 //? llamamos a la funcion que inicia el juego en el que estemos jugando
 
-export const selectGame = (button ,numero, fin) => {
-     
+export const selectGame = (button, numero, fin) => {
+
      if (button == 'tres-en-raya') {
-       
+
           controlturnColor(numero, fin);
 
-          
+
      } else if (button == 'trivial') {
 
-          roundQuestion(numero); 
-           
+          roundQuestion(numero);
+
      }
 }
- 
+
 
 //? comprobamos si una casilla esta ocupada, el color de la ficha y el fin del juego
 
 const controlturnColor = (numero, fin) => {
 
      const numberCasilla = document.querySelector(`#casilla-${numero}`);
-     const containerGame = document.querySelector('.container-game');
-     
+
      if (numberCasilla.className.includes('ocupada')) {
-          
-          return; 
+
+          return;
 
      } else {
 
           turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
           turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
-          
+
           numberCasilla.classList.add('ocupada');
           const ficha = document.createElement('img');
           ficha.src = turnColor;
@@ -167,23 +169,20 @@ const controlturnColor = (numero, fin) => {
           countEndGame++;
           countGamer++;
           turnGamer(countGamer);
-
-     } 
+        
+     }
 
      if (countEndGame == fin) {
-          
-          setTimeout(() => {
-              
-               createMessage(containerGame,'termino la partida')
-               ClearTime();
-              
-          }, 1000);   
+
+          ClearTime()
+  
      }
-     
+
+
 }
 
 export const createTres = (button) => {
-     
+
      initDate('pointRedTres', 'pointYellowTres');
 
      countEndGame = 0;
@@ -207,10 +206,14 @@ export const createTres = (button) => {
           casilla.addEventListener('click', () => initPlay(button, i, 9));
 
      }
+     countGamer++;
      turnGamer(countGamer);
 
 }
-         
+
+
+
+
 
 
  

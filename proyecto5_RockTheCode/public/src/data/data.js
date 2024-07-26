@@ -3,9 +3,9 @@ import { createTres } from "../pages/tres/tres";
 import { createTrivial } from "../pages/trivial/trivial";
 
 export const menu = [
-     { id: 'tres-en-raya', name: 'Tres en Raya', player: createTres, time: 1, claveRed: 'pointRedTres', claveYellow: 'pointYellowTres' },
-     { id: 'ahorcado', name: 'Ahorcado', player: createAhorcado, time: 2, claveRed: 'pointRedAhor', claveYellow: 'pointYellowAhor' },
-     { id: 'trivial', name: 'Trivial', player: createTrivial, time: 1, claveRed: 'pointRedTrivi', claveYellow: 'pointYellowTrivi' }];
+     { id: 'tres-en-raya', name: 'Tres en Raya', player: createTres, time: 1, claveRed: 'pointRedTres', claveYellow: 'pointYellowTres', countGamer: 0 },
+     { id: 'ahorcado', name: 'Ahorcado', player: createAhorcado, time: 2, claveRed: 'pointRedAhor', claveYellow: 'pointYellowAhor',  countGamer: 0 },
+     { id: 'trivial', name: 'Trivial', player: createTrivial, time: 1, claveRed: 'pointRedTrivi', claveYellow: 'pointYellowTrivi', countGamer: 0 }];
 
 export const preguntasTrivial = [{
      name: 'Ciencia', preguntas: [

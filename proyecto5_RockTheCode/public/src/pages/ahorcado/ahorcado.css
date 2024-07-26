@@ -8,7 +8,7 @@
 
 .keywors-container,
 .drawing-container {
-     
+
      position: relative;
      height: 100%;
      width: 48%;
@@ -19,7 +19,7 @@
 .drawing-container svg {
 
      position: absolute;
-     left:0;
+     left: 0;
      height: 100%;
      width: 70%;
 
@@ -30,7 +30,6 @@
      display: flex;
      justify-content: center;
      align-items: center;
-     justify-content: center;
      align-content: center;
      flex-direction: column;
      gap: var(--xxl);
@@ -49,7 +48,7 @@
 .winer {
 
      background: var(--light-grey);
-     padding: var(--m) ;
+     padding: var(--m);
      font-size: 30px;
 
 }
@@ -75,7 +74,6 @@
 
 .add-letter-container {
 
-     bottom: var(--xl);
      color: var(--light-grey);
      font-family: var(--text);
      border: var(--light-grey) solid var(--xs);
@@ -121,7 +119,7 @@
 .add-letter-container button img {
 
      cursor: pointer;
-     background: var(--red3);
+     background: var(--dark-grey);
      height: 2.5rem;
      width: 3rem;
      border: var(--light-grey) var(--s) solid;
@@ -130,7 +128,7 @@
 
      &:hover {
 
-          background: var(--dark-grey)
+          background: var(--red3)
      }
 }
 
@@ -144,7 +142,6 @@
 
 .count-input {
 
-     bottom: 0;
      height: 45px;
      width: 45px;
      background: var(--light-grey);
@@ -153,4 +150,43 @@
      font-weight: bold;
      color: var(--red);
      font-size: 1.5rem;
+}
+
+
+@media (max-width: 550px) {
+
+     .keywor-secret-container {
+
+          width: 190%;
+          position: absolute;
+          top: var(--xl);
+          right: 5%;
+
+     }
+
+     .count-input {
+
+          height: 35px;
+          width: 35px;
+          font-size: 1.2rem;
+     }
+
+     .keywors-container {
+
+          padding: 100px 10px 0 0;
+          gap: var(--xl)
+     }
+
+     .add-letter-container input {
+
+          font-size: 1.3rem;
+     }
+
+     .letter-container-off,
+     .letter-container-on {
+
+          width: 6.5%;
+     }
+
+
 }

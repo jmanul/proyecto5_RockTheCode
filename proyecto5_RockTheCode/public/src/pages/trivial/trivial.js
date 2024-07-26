@@ -4,7 +4,7 @@ import { preguntasTrivial } from '../../data/data';
 import {initPlay} from '../tres/tres';
 import './trivial.css'
 
-let countGamer = 0;
+let countGamer = 1;
 let answerCorrect;
 
 let countRed;
@@ -139,7 +139,7 @@ const resultAnswer = (answer) => {
      const answerbutton = document.querySelector('#answer-send');
      answerbutton.style.pointerEvents = 'none';
 
-      countGamer++;
+   
      turnGamer(countGamer);
 }
 
@@ -219,6 +219,7 @@ export const createTrivial = (button) => {
           }      
      });
      
+     countGamer++;
      ClearTime();
      turnGamer(countGamer);
 }

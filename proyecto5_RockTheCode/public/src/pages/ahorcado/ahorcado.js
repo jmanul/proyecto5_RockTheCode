@@ -9,30 +9,29 @@ import './ahorcado.css';
 let countLetteradd = 0;
 let correctKeyword;
 let letterUp = 0;
-let countGamer = 0;
+let countGamer = 1;
 
 const compareWiner = () => {
-      
+
      const containerGame = document.querySelector('.container-game');
      const keyworSecretContainer = document.querySelector('.keywor-secret-container');
      const letterSend = document.querySelector('#letter-send');
-     
+
      if (correctKeyword.length == letterUp) {
-            
+
           keyworSecretContainer.classList.add('winer');
           setTimeout(() => {
-     
+
                createMessage(containerGame, 'Enhorabuena, has ganado.😊')
-              
+
                ClearTime();
                addPoint(countGamer, 'pointRedAhor', 'pointYellowAhor');
-               countGamer++;
 
                letterSend.style.pointerEvents = 'none';
 
           }, 1000);
-          
-       }
+
+     }
 }
 
 const printAhorcadoPart = () => {
@@ -42,22 +41,22 @@ const printAhorcadoPart = () => {
 
 }
 const printLetterKeyword = (position) => {
-   
+
      const letterContainer = document.querySelector(`#letterContainer-${position}`);
      letterContainer.classList.add('letter-container-on');
      countLetteradd--;
      compareWiner();
 }
-const compareLetter = (letter) => {
-      
+export const compareLetter = (letter) => {
+
      countLetteradd++;
      const containerGame = document.querySelector('.container-game');
      const countInput = document.querySelector('.count-input');
      countInput.innerHTML = `<p>${letter}</p>`;
      const letterSend = document.querySelector('#letter-send');
-    
+
      if (countLetteradd == 7) {
-        
+
           letterSend.style.pointerEvents = 'none';
           printAhorcadoPart();
 
@@ -65,27 +64,27 @@ const compareLetter = (letter) => {
 
                createMessage(containerGame, `Se agotaron todos los intentos,la palabra que buscabas es ${correctKeyword.toUpperCase()} 😬`)
                ClearTime();
-               countGamer++;
 
           }, 1000);
      } else {
-          
+
           createForm();
+          console.log(correctKeyword);
 
           let someLetter = false;
 
           for (let i = 0; i < correctKeyword.length; i++) {
 
-              let item = correctKeyword[i];
+               let item = correctKeyword[i];
 
                if (item == letter) {
-                    
+
                     letterUp++;
                     printLetterKeyword(i);
                     someLetter = true;
-                    
+
                }
-               
+
           };
 
           if (someLetter == false) {
@@ -93,7 +92,7 @@ const compareLetter = (letter) => {
                printAhorcadoPart();
           }
      }
-     
+
 }
 
 export const createAhorcado = (button) => {
@@ -128,12 +127,12 @@ export const createAhorcado = (button) => {
 
           const letterContainer = document.createElement('div');
           letterContainer.id = `letterContainer-${i}`;
-          letterContainer.classList.add('flex-container',`letter-container`, 'letter-container-off');
+          letterContainer.classList.add('flex-container', `letter-container`, 'letter-container-off');
           letterContainer.innerHTML = `<p>${letter}</p>`
           keyworSecretContainer.append(letterContainer);
 
      }
-     
+
      printLocalStorage();
 
      const addLetterContainer = document.createElement('div');
@@ -144,9 +143,10 @@ export const createAhorcado = (button) => {
 
      createForm();
      ClearTime();
+     countGamer++;
      turnGamer(countGamer);
 
 
-   
+
 }  
 

@@ -1,3 +1,4 @@
+import { compareLetter } from '../../pages/ahorcado/ahorcado';
 import './form.css'
 
 

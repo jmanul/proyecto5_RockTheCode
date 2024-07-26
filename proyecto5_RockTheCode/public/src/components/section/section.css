@@ -30,8 +30,7 @@ section {
      align-content: center;
      margin: var(--l);
      width: 95%;
-     margin: var(--xl);
-
+     margin: var(--xl) var(--l);
 
 }
 
@@ -73,7 +72,7 @@ section {
      50% {
 
           opacity: 1;
-     } 
+     }
 
      100% {
 
@@ -124,18 +123,28 @@ section {
      height: 70%;
      padding: 20px;
      background: var(--light-grey);
+     background-image: url(./src/assets/backgraund.svg);
+     background-size: var(--xl);
+     background-position: center center;
      border-radius: var(--xl);
 
 }
 
 .saludo {
-     
+
      padding: 10rem 2rem;
      font-size: var(--xl);
      font-family: var(--title);
      color: var(--red);
      font-weight: 700;
-     
+
+}
+
+.saludo span {
+
+     background: var(--dark-grey);
+     border-radius: var(--xl);
+     padding: var(--l);
 }
 
 .replay div {
@@ -192,7 +201,88 @@ section {
 
 .active {
 
-     animation: movi .8s linear  4;
+     animation: movi .8s linear 4;
      pointer-events: visible;
+
+}
+
+
+@media (max-width: 550px) {
+     .container-game {
+     
+               padding: 2px;
+
+          }
+
+     .jugadores p {
+          font-size: 20px;
+          padding: var(--xs) var(--m);
+
+     }
+
+     .marcadores img {
+
+          width: 25px;
+
+     }
+
+     .crono p {
+
+          font-size: 20px;
+          padding: var(--xs) var(--m);
+
+     }
+
+
+     .crono strong {
+
+          font-size: 20px;
+
+     }
+
+     .marcadores {
+
+          margin: var(--l) var(--m);
+     }
+
+     h2 {
+          margin-top: 82px;
+          font-size: var(--xl);
+          width: 95%;
+          height: 60px;
+
+     }
+
+     section {
+
+          width: 95%;
+
+     }
+
+     .clear {
+
+          height: 60px;
+          width: 95%;
+     }
+
+     .clear>img {
+
+          width: 40px;
+
+     }
+
+     .saludo {
+
+          font-size: 14px;
+
+     }
+
+     .replay div {
+
+          margin: var(--l) var(--xl);
+          width: 40px;
+          height: 40px;
+     }
+
 
 }

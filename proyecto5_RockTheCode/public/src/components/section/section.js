@@ -1,6 +1,6 @@
 import { activeOption, init, menuInit } from '../../../../main';
 import { menu} from '../../data/data';
-import { deleteLocalStore } from '../../pages/trivial/trivial';
+import { deleteLocalStore, turnGamer } from '../../pages/trivial/trivial';
 
 import { createList } from '../list/list';
 import { createLogo } from '../logo/logo';
@@ -11,6 +11,7 @@ import './section.css';
 let contador;
 let s = 0;
 let m = 0;
+
 
 const printNumber = () => { 
      
@@ -62,8 +63,9 @@ const tiempo = (time) => {
 
                if (m == '0' + time) {
 
-                    setTimeout(() => {
 
+                    setTimeout(() => {
+                         
                          ClearTime();
                          const section = document.querySelector('section');
                          createMessage(section, 'se agoto su tiempo');
@@ -97,8 +99,6 @@ export const ClearTime = () => {
 export const createSection = (button, game) => {
 
      const { name, time, player, claveRed, claveYellow } = game;
-
-     // initDate(claveRed, claveYellow);
      
      const header = document.querySelector('header');
      header.innerHTML = '';
@@ -142,7 +142,7 @@ export const createSection = (button, game) => {
      
      const containerGame = document.createElement('div');
      containerGame.classList.add('flex-container', 'container-game');
-     containerGame.innerHTML = `<span class = "saludo"><< pulsa play >></span>`;
+     containerGame.innerHTML = `<div class = "saludo"><span><< pulsa play >></span></div>`;
      section.append(containerGame);
     
      const replay = document.createElement('div');

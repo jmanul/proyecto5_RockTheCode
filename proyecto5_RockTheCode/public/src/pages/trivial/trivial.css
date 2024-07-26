@@ -146,7 +146,7 @@
 
 .answered {
 
-     opacity: 0.3;
+     filter: blur(2px) opacity(.5);
 }
 
 
@@ -157,21 +157,65 @@
 
           width: 100%;
           height: max-content;
-          padding: var(--xl);
-          background: var(--dark-grey);
-          border-top-left-radius: var(--l);
-          border-top-right-radius: var(--l);
 
      }
 
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
+
+     .tablero-questions {
+     
+               padding: var(--l);
+               border-top-left-radius: var(--xl);
+                    border-top-right-radius: var(--xl);
+     
+          }
+
+     .container-answers {
+
+          width: 100%;
+          height: 4rem;
+               border-bottom-left-radius: var(--xl);
+                    border-bottom-right-radius: var(--xl);
+          
+
+     }
 
      .question {
-               height: 10rem;
-               padding-top:var(--l); ;
-            
+          width: 100%;
+          height: 8rem;
+          padding-top: var(--l);
+          
+
+     }
+
+     .container-temes {
+          
+          margin-top: var(--l);
+          height: 10rem;
+          width: 15rem;
+
+     }
+
+   
+     
+          .question p {
+           
+               width: 100%;
+                    border-left:none;
+                         padding: var(--m) var(--xl);
+       
           }
+
+                    .answer {
+                     
+                         height: 65%;
+                         width: 80%;
+                 
+                    }
+
+
+
 
 }

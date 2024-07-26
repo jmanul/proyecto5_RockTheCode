@@ -5,6 +5,9 @@
      background:transparent;
      display:grid;
      grid-template-columns: 1fr 1fr 1fr ;
+     background : var(--light-grey);
+     border-radius: var(--xl);
+     
    
      
 }
@@ -15,7 +18,7 @@
      width: 7rem;
      height: 7rem;
      border: var(--xs) solid var(--light-grey);
-  
+     border-radius:var(--l)
      
 }
 
@@ -36,5 +39,17 @@
 
           opacity: 1;
      }
+
+}
+
+
+@media (max-width: 550px) {
+
+     .casilla {
+           
+               width: 6.5rem;
+               height: 6.5rem;
+     
+          }
 
 }
