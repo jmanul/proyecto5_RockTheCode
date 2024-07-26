@@ -56,6 +56,8 @@ export const deleteLocalStore = (red, yellow) => {
      localStorage.removeItem(yellow);
 }
 
+//? cambio de jugador
+
 export const turnGamer = (turn) => {
 
       const iconYellow = document.querySelector('#iconJugador-1');
@@ -74,6 +76,8 @@ export const turnGamer = (turn) => {
      }
 
 }
+
+//? suma de puntuacion
 
 export const addPoint = (countGamer,red ,yellow) => {
       
@@ -104,6 +108,8 @@ export const addPoint = (countGamer,red ,yellow) => {
 
 }
 
+
+//? resultado de la respuesta introducida
 
 const resultAnswer = (answer) => {
 
@@ -142,6 +148,8 @@ const resultAnswer = (answer) => {
    
      turnGamer(countGamer);
 }
+
+//? seleccion de la pregunta que se mostrara
 
 export const roundQuestion = (numero) => {
 

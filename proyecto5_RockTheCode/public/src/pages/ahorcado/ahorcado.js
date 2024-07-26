@@ -6,10 +6,14 @@ import { imagesAhorcado, keyworsAhorcado } from '../../data/data';
 import { addPoint, initDate, printLocalStorage, turnGamer } from '../trivial/trivial';
 import './ahorcado.css';
 
-let countLetteradd = 0;
 let correctKeyword;
 let letterUp = 0;
 let countGamer = 1;
+let figureNumber = 0;
+let someLetter = false;
+let letterOnList = [];
+
+//? comprueba si se ha completado la palabra
 
 const compareWiner = () => {
 
@@ -34,31 +38,20 @@ const compareWiner = () => {
      }
 }
 
+//? pinta la figura del ahorcado que corresponda o concluye la partida
+
 const printAhorcadoPart = () => {
 
-     const drawingContainer = document.querySelector('.drawing-container');
-     drawingContainer.innerHTML = imagesAhorcado[countLetteradd];
+     figureNumber++;
 
-}
-const printLetterKeyword = (position) => {
-
-     const letterContainer = document.querySelector(`#letterContainer-${position}`);
-     letterContainer.classList.add('letter-container-on');
-     countLetteradd--;
-     compareWiner();
-}
-export const compareLetter = (letter) => {
-
-     countLetteradd++;
      const containerGame = document.querySelector('.container-game');
-     const countInput = document.querySelector('.count-input');
-     countInput.innerHTML = `<p>${letter}</p>`;
+     const drawingContainer = document.querySelector('.drawing-container');
+     drawingContainer.innerHTML = imagesAhorcado[figureNumber];
      const letterSend = document.querySelector('#letter-send');
 
-     if (countLetteradd == 7) {
+     if (figureNumber == 7) {
 
           letterSend.style.pointerEvents = 'none';
-          printAhorcadoPart();
 
           setTimeout(() => {
 
@@ -66,39 +59,69 @@ export const compareLetter = (letter) => {
                ClearTime();
 
           }, 1000);
-     } else {
+     }       
 
-          createForm();
-          console.log(correctKeyword);
+}
 
-          let someLetter = false;
+//? descubre las letras acertadas
 
-          for (let i = 0; i < correctKeyword.length; i++) {
+const printLetterKeyword = (letter, position) => {
 
-               let item = correctKeyword[i];
+     letterOnList.push(letter);
 
-               if (item == letter) {
+     const letterContainer = document.querySelector(`#letterContainer-${position}`);
+     letterContainer.classList.add('letter-container-on');
 
-                    letterUp++;
-                    printLetterKeyword(i);
-                    someLetter = true;
+     compareWiner();
+}
 
-               }
+//? comprueba la letra introducida para despues iniciar el proceso correspondiente
 
-          };
+export const compareLetter = (letter) => {
 
-          if (someLetter == false) {
+     someLetter = false; 
+  
+     const countInput = document.querySelector('.count-input');
+     countInput.innerHTML = `<p>${letter}</p>`;
+     
+     createForm();
 
+     for (const element of letterOnList) {
+
+          if (element == letter) {
+               console.log(letterOnList);
                printAhorcadoPart();
+               return;
           }
+
+     }
+
+     for (let i = 0; i < correctKeyword.length; i++) {
+
+          let item = correctKeyword[i];
+
+          if (item == letter) {
+
+               letterUp++;
+               printLetterKeyword(letter, i);
+               someLetter = true;
+
+          }
+
+     };
+
+     if (someLetter == false) {
+
+          printAhorcadoPart();
      }
 
 }
 
 export const createAhorcado = (button) => {
 
-     countLetteradd = 0;
      letterUp = 0;
+     letterOnList.length = 0;
+     figureNumber = 0;
 
      initDate('pointRedAhor', 'pointYellowAhor');
 
@@ -148,5 +171,5 @@ export const createAhorcado = (button) => {
 
 
 
-}  
+}
 

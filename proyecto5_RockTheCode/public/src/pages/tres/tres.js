@@ -108,7 +108,7 @@ const comprobation = (numero) => {
 };
 
 
-//? inicio del juego comprobando si se ha iniciado el tiempo
+//? comienzo del juego comprobando si se ha iniciado el tiempo
 
 export const initPlay = (button, numero, fin) => {
 
