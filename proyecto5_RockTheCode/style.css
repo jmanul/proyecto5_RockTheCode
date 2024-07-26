@@ -156,7 +156,6 @@ main {
     width: 100%;
     height: 100svh;
     background: var(--dark-grey);
-    background-image: url(./src/assets/backgraund.svg);
     background-size: 25px;
     background-position: center center;
     flex-direction: column;

@@ -112,7 +112,11 @@ export const createSection = (button, game) => {
      menuIconMovile.innerHTML = ` <img class= 'icon-menu' src='./src/assets/menu.svg'>`;
      header.append(menuIconMovile);
      const listContainer = document.querySelector('#menu-header-list');
-     menuIconMovile.addEventListener('click', () => listContainer.classList.toggle('movile-menu','menu-header-off'));
+     menuIconMovile.addEventListener('click', () => {
+          
+          listContainer.classList.toggle('movile-menu', 'menu-header-off')
+          listContainer.style.backgroundImage = 'url(./src/assets/backgraund.svg)';
+     });
 
      menuInit(list);
      activeOption(button, list);
@@ -142,6 +146,7 @@ export const createSection = (button, game) => {
      
      const containerGame = document.createElement('div');
      containerGame.classList.add('flex-container', 'container-game');
+     containerGame.style.backgroundImage = 'url(./src/assets/backgraund.svg)';
      containerGame.innerHTML = `<div class = "saludo"><span><< pulsa play >></span></div>`;
      section.append(containerGame);
     
@@ -157,8 +162,6 @@ export const createSection = (button, game) => {
      main.append(clear);
 
      logoInicio.onclick = init;
-
-     // printLocalStorage();
 
      ClearTime();
      
