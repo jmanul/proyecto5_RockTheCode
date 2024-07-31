@@ -8,7 +8,7 @@ export const createLogo = (site, img, name, url) => {
      logoContainer.id = name;
      site.append(logoContainer);
      const foto = document.createElement('div');
-     foto.innerHTML = ` <img class= 'foto' src='./src/assets/icon2.svg'> <img class= 'foto-2' src=${img}>`;
+     foto.innerHTML = ` <img class= 'foto' src='./assets/icon2.svg'> <img class= 'foto-2' src=${img}>`;
      logoContainer.append(foto);
 
      if (url) {

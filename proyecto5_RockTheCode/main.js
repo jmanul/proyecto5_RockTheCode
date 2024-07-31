@@ -11,7 +11,7 @@ const body = document.querySelector('body');
 const main = document.createElement('main');
 main.id = 'main';
 main.className = 'flex-container';
-main.style.backgroundImage = 'url(./src/assets/backgraund.svg)';
+main.style.backgroundImage = 'url(./assets/backgraund.svg)';
 body.append(main);
 const header = document.createElement('header');
 body.insertBefore(header, main);
@@ -61,7 +61,7 @@ export const init = () => {
      const menuContainer = document.createElement('div');
      menuContainer.className = ('inicio')
      main.append(menuContainer);
-     createLogo(header, './src/assets/icon.svg', 'logo-header');
+     createLogo(header, './assets/icon.svg', 'logo-header');
      createList(menuContainer, menu, 'menu-header');
      const list = document.querySelectorAll('#menu-header-list li');
     
