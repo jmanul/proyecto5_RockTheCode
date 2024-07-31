@@ -67,8 +67,14 @@
      color: transparent;
 }
 
-.letter-container-on {
+.letter-container-off{
 
+     display: none;
+}
+
+.letter-container-on {
+     
+     display: block;
      color: var(--red);
 }
 

@@ -115,10 +115,10 @@ const resultAnswer = (answer) => {
 
      const containerGame = document.querySelector('.container-game');
 
-     let answerTransform = answer.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-     let answerCorrectTransform = answerCorrect.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+     let answerTransform = answer.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+     let answerCorrectTransform = answerCorrect.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-     if (answerTransform.toLowerCase() == answerCorrectTransform.toLowerCase()) {
+     if (answerTransform == answerCorrectTransform) {
 
 
           setTimeout(() => {
@@ -160,6 +160,9 @@ export const roundQuestion = (numero) => {
           return;
 
      } else {
+
+          const temas = document.querySelectorAll('.tema');
+          temas[numero].style.pointerEvents = 'none';
 
           let x = Math.floor(Math.random() * preguntasTrivial[numero].preguntas.length);
 
@@ -222,6 +225,7 @@ export const createTrivial = (button) => {
           } else {
               
                resultAnswer(e.target.answer.value);
+               
           }      
      });
      
