@@ -6,8 +6,8 @@ import { addPoint, initDate, printLocalStorage, roundQuestion, turnGamer } from 
 
 import './tres.css';
 
-const colorRed = './src/assets/red.svg';
-const colorYellow = './src/assets/yellow.svg';
+const colorRed = './assets/red.svg';
+const colorYellow = './assets/yellow.svg';
 const nameRed = 'countRed';
 const nameYellow = 'countYellow';
 let turnPoint = nameYellow;
