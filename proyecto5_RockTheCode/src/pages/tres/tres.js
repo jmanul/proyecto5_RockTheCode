@@ -10,10 +10,10 @@ const colorRed = './src/assets/red.svg';
 const colorYellow = './src/assets/yellow.svg';
 const nameRed = 'countRed';
 const nameYellow = 'countYellow';
-let turnPoint = nameRed;
-let turnColor = colorRed;
+let turnPoint = nameYellow;
+let turnColor = colorYellow;
 let countEndGame = 0;
-let countGamer = 1;
+let countGamer = 0;
 
 const combinations = [[0, 1, 2], [2, 5, 8], [0, 3, 6], [6, 7, 8], [3, 4, 5], [0, 4, 8], [6, 4, 2], [1, 4, 7]];
 
@@ -91,10 +91,8 @@ const comprobation = (numero) => {
                                    createMessage(containerGame, 'Gano el jugador rojo');
 
                               }
-                            
                               printThree(i, turnPoint);
                               addPoint(countGamer, 'pointRedTres', 'pointYellowTres');
-                              countGamer--;
                              
                          }
                     }
@@ -103,6 +101,13 @@ const comprobation = (numero) => {
           }
 
      }
+
+     turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
+     turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
+
+     countEndGame++;
+     countGamer++;
+     turnGamer(countGamer);
 
 
 };
@@ -158,17 +163,11 @@ const controlturnColor = (numero, fin) => {
 
      } else {
 
-          turnColor == colorRed ? turnColor = colorYellow : turnColor = colorRed;
-          turnColor == colorRed ? turnPoint = nameRed : turnPoint = nameYellow;
-
           numberCasilla.classList.add('ocupada');
           const ficha = document.createElement('img');
           ficha.src = turnColor;
           numberCasilla.append(ficha);
           comprobation(numero);
-          countEndGame++;
-          countGamer++;
-          turnGamer(countGamer);
         
      }
 
@@ -206,7 +205,7 @@ export const createTres = (button) => {
           casilla.addEventListener('click', () => initPlay(button, i, 9));
 
      }
-     countGamer++;
+
      turnGamer(countGamer);
 
 }

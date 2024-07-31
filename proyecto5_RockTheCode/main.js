@@ -1,8 +1,8 @@
 
-import { createList } from './public/src/components/list/list';
-import { createLogo } from './public/src/components/logo/logo';
-import { createSection } from './public/src/components/section/section.js';
-import { menu} from './public/src/data/data.js';
+import { createList } from './src/components/list/list.js';
+import { createLogo } from './src/components/logo/logo.js';
+import { createSection } from './src/components/section/section.js';
+import { menu} from './src/data/data.js';
 
 import './style.css'
 

@@ -144,9 +144,7 @@ const resultAnswer = (answer) => {
   
      const answerbutton = document.querySelector('#answer-send');
      answerbutton.style.pointerEvents = 'none';
-
-   
-     turnGamer(countGamer);
+     
 }
 
 //? seleccion de la pregunta que se mostrara

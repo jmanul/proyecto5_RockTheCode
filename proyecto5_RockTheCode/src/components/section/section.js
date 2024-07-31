@@ -1,4 +1,4 @@
-import { activeOption, init, menuInit } from '../../../../main';
+import { activeOption, init, menuInit } from '../../../main';
 import { menu} from '../../data/data';
 import { deleteLocalStore, turnGamer } from '../../pages/trivial/trivial';
 
@@ -176,8 +176,7 @@ export const createSection = (button, game) => {
 
      const reload = document.querySelector('#reload').addEventListener('click', () => {
           
-          player(button);
-          ClearTime();  
+           ClearTime();  
      });
  
      clear.addEventListener('click', () => {   
