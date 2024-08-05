@@ -16,7 +16,7 @@
 
   --white: rgb(243, 243, 243);
   --black: #181818;
-  --yellow: #FFC300;
+  --yellow: #cca00e;
   --green: #DAF7A6;
   --red: #C70039;
   --red2: #900C3F;
@@ -128,6 +128,37 @@ main {
 
 }
 
+footer {
+
+  width: 100%;
+  height: auto;
+  background: var(--dark-grey);
+}
+
+.making {
+  width: 100%;
+  height: 50px;
+}
+
+.making a {
+  color: var(--white);
+}
+
+.pasttri-logo {
+  height: 25px;
+
+}
+
+.pasttri-logo img {
+  height: 100%;
+}
+
+.making>span {
+  font-size: small;
+  font-family: var(--text);
+  color: var(--light-grey);
+}
+
 @media (max-width: 850px) {
 
   header ul,
@@ -180,11 +211,11 @@ main {
     height: 80px;
   }
 
-    .inicio {
-  
-      font-size: 20px;
-   
-    }
+  .inicio {
+
+    font-size: 20px;
+
+  }
 
 
 }

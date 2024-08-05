@@ -2,7 +2,7 @@
 import { createList } from './src/components/list/list.js';
 import { createLogo } from './src/components/logo/logo.js';
 import { createSection } from './src/components/section/section.js';
-import { menu} from './src/data/data.js';
+import { menu } from './src/data/data.js';
 
 import './style.css'
 
@@ -29,7 +29,7 @@ export const menuInit = (list) => {
                if (game.name === nameButton) {
 
 
-                    button.addEventListener('click', () => createSection(classButton,game));   
+                    button.addEventListener('click', () => createSection(classButton, game));
                }
 
           }
@@ -64,7 +64,7 @@ export const init = () => {
      createLogo(header, './assets/icon.svg', 'logo-header');
      createList(menuContainer, menu, 'menu-header');
      const list = document.querySelectorAll('#menu-header-list li');
-    
+
      menuInit(list);
 
 }
@@ -75,5 +75,12 @@ init();
 const logoInicio = document.querySelector('#logo-header');
 logoInicio.onclick = init;
 
-
+const footer = document.createElement('footer');
+footer.id = 'footer';
+footer.className = 'flex-container';
+document.body.append(footer);
+const footerMaking = document.createElement('div');
+footerMaking.classList.add('flex-container', 'making');
+footer.append(footerMaking);
+footerMaking.innerHTML = `<span class="flex-container"><strong>Hecho por Jmanul</strong><div class="pasttri-logo"><img src="./assets/logoPastri.svg" alt="logo pasttri"></div></span>`;
 
