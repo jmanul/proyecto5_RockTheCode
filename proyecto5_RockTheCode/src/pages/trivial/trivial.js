@@ -115,10 +115,10 @@ const resultAnswer = (answer) => {
 
      const containerGame = document.querySelector('.container-game');
 
-     let answerTransform = answer.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-     let answerCorrectTransform = answerCorrect.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+     let answerTransform = answer.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+     let answerCorrectTransform = answerCorrect.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-     if (answerTransform == answerCorrectTransform) {
+     if (answerTransform.toLowerCase() == answerCorrectTransform.toLowerCase()) {
 
 
           setTimeout(() => {
