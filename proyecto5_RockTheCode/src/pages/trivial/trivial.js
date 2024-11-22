@@ -183,7 +183,7 @@ export const createTrivial = (button) => {
      tableroQuestions.classList.add('tablero-questions', 'flex-container');
      const containerAnswers = document.createElement('div');
      containerAnswers.classList.add('flex-container', 'container-answers');
-     containerAnswers.innerHTML = `<form class="answer flex-container"> <input type="text" autocomplete="off" placeholder="respuesta" name="answer" id="answer"><button type="submit" id ="answer-send"><img src="./assets/arrow.svg" alt="send"></button></form>`;
+     containerAnswers.innerHTML = `<form class="answer flex-container"> <input type="text" autocomplete="off" autocorrect="off" placeholder="respuesta" name="answer" id="answer"><button type="submit" id ="answer-send"><img src="./assets/arrow.svg" alt="send"></button></form>`;
      containerGame.append(tableroQuestions, containerAnswers);
      const containerTemes = document.createElement('div');
      containerTemes.classList.add('container-temes');
